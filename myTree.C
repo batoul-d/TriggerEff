@@ -73,6 +73,10 @@ void myTree::diMuTrigEff()
       TH1F *rapdeno[ntrig];
       TH1F *massnume[ntrig];
       TH1F *massdeno[ntrig];
+      TPaveText* tbp[ntrig];
+      TPaveText* tby[ntrig];
+      TPaveText* tbm[ntrig];
+
       for (int i=0; i<ntrig; i++)
 	{
 	  pnume[i]= new TH1F (Form("pnume%d",i), Form("%s; p_{t}(GeV/c); Efficiency",trig[i].c_str()), npb-1, ptbins);
@@ -85,8 +89,8 @@ void myTree::diMuTrigEff()
 	  cany[i] = new TCanvas (Form("cany%d", i), Form("cany%d", i), 1000, 750);
 	  canm[i] = new TCanvas (Form("canm%d", i), Form("canm%d", i), 1000, 750);
 	}
-
-      Long64_t nentries =1000000; //fChain->GetEntries();
+      Long64_t nentries = 
+fChain->GetEntries();
       Long64_t nbytes = 0, nb = 0;
       for (Long64_t jentry=0; jentry<nentries;jentry++) 
 	{
@@ -136,6 +140,11 @@ void myTree::diMuTrigEff()
 	  //peff[i]->Write(Form("ptQQ_%s",trig[i].c_str()));
 	  canp[i]->cd();
 	  peff[i]->Draw("alp");
+	  tbp[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbp[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tbp[i]->SetBorderSize(0);
+	  tbp[i]->SetFillColor(0);
+	  tbp[i]->Draw("same");
 	  canp[i]->SaveAs(Form("ptQQ_%s.png",trig[i].c_str()));
 
 	  rapeff[i] = new TEfficiency(Form("rapeff%d",i), ";y; Efficiency", netab-1, etabins);
@@ -147,6 +156,11 @@ void myTree::diMuTrigEff()
 	  //rapeff[i]->Write(Form("rapQQ_%s",trig[i].c_str()));
 	  cany[i]->cd();
 	  rapeff[i]->Draw("alp");
+	  tby[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tby[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tby[i]->SetBorderSize(0);
+	  tby[i]->SetFillColor(0);
+	  tby[i]->Draw("same");
 	  cany[i]->SaveAs(Form("rapQQ_%s.png",trig[i].c_str()));
 
 	  masseff[i] = new TEfficiency(Form("masseff%d",i), "; mass (GeV/c^{2}); Efficiency", nmassb-1, massbins);
@@ -158,6 +172,11 @@ void myTree::diMuTrigEff()
 	  //masseff[i]->Write(Form("massQQ_%s",trig[i].c_str()));
 	  canm[i]->cd();
 	  masseff[i]->Draw("alp");
+	  tbm[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbm[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tbm[i]->SetBorderSize(0);
+	  tbm[i]->SetFillColor(0);
+	  tbm[i]->Draw("same");
 	  canm[i]->SaveAs(Form("massQQ_%s.png",trig[i].c_str()));
 	}
       //ptTrigEff->Close();
@@ -196,6 +215,9 @@ void myTree::singleMuTrigEff()
       TH1F *etadeno[ntrig];
       TH1F *phinume[ntrig];
       TH1F *phideno[ntrig];
+      TPaveText* tbp[ntrig];
+      TPaveText* tbe[ntrig];
+      TPaveText* tbph[ntrig];
       for (int i=0; i<ntrig; i++)
 	{
 	  pnume[i]= new TH1F (Form("pnume%d",i), ";p_{t}(GeV/c); Events", npb-1, ptbins);
@@ -209,7 +231,7 @@ void myTree::singleMuTrigEff()
 	  canph[i] = new TCanvas (Form("canph%d", i), Form("canph%d", i), 1000, 750);
 	}
 
-      Long64_t nentries = 1000000; //fChain->GetEntries();
+      Long64_t nentries = fChain->GetEntries();
       Long64_t nbytes = 0, nb = 0;
       for (Long64_t jentry=0; jentry<nentries;jentry++) 
 	{
@@ -257,6 +279,11 @@ void myTree::singleMuTrigEff()
 	  //peff[i]->Write(Form("ptMu_%s",trig[i].c_str()));
 	  canp[i]->cd();
 	  peff[i]->Draw("alp");
+	  tbp[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbp[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tbp[i]->SetBorderSize(0);
+	  tbp[i]->SetFillColor(0);
+	  tbp[i]->Draw("same");
 	  canp[i]->SaveAs(Form("ptMu_%s.png",trig[i].c_str()));
 
 	  etaeff[i] = new TEfficiency(Form("etaeff%d",i), Form("%s;#eta; Efficiency",trig[i].c_str()), netab-1, etabins);
@@ -268,6 +295,11 @@ void myTree::singleMuTrigEff()
 	  //etaeff[i]->Write(Form("etaMu_%s",trig[i].c_str()));
 	  cane[i]->cd();
 	  etaeff[i]->Draw("alp");
+	  tbe[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbe[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tbe[i]->SetBorderSize(0);
+	  tbe[i]->SetFillColor(0);
+	  tbe[i]->Draw("same");
 	  cane[i]->SaveAs(Form("etaMu_%s.png",trig[i].c_str()));
 
 	  phieff[i] = new TEfficiency(Form("phieff%d",i), Form("%s; #phi; Efficiency",trig[i].c_str()), nphib-1, phibins);
@@ -279,6 +311,11 @@ void myTree::singleMuTrigEff()
 	  //phieff[i]->Write(Form("phiMu_%s",trig[i].c_str()));
 	  canph[i]->cd();
 	  phieff[i]->Draw("alp");
+	  tbph[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbph[i]-> AddText(Form("%s",trig[i].c_str()));
+	  tbph[i]->SetBorderSize(0);
+	  tbph[i]->SetFillColor(0);
+	  tbph[i]->Draw("same");
 	  canph[i]->SaveAs(Form("phiMu_%s.png",trig[i].c_str()));
 	}
       //ptTrigEff->Close();
