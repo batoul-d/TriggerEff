@@ -77,6 +77,8 @@ void myTree::diMuTrigEff()
       TPaveText* tby[ntrig];
       TPaveText* tbm[ntrig];
 
+      Bool_t ptCond = true;
+
       for (int i=0; i<ntrig; i++)
 	{
 	  pnume[i]= new TH1F (Form("pnume%d",i), Form("%s; p_{t}(GeV/c); Efficiency",trig[i].c_str()), npb-1, ptbins);
@@ -89,8 +91,7 @@ void myTree::diMuTrigEff()
 	  cany[i] = new TCanvas (Form("cany%d", i), Form("cany%d", i), 1000, 750);
 	  canm[i] = new TCanvas (Form("canm%d", i), Form("canm%d", i), 1000, 750);
 	}
-      Long64_t nentries = 
-fChain->GetEntries();
+      Long64_t nentries = 1000000; // fChain->GetEntries();
       Long64_t nbytes = 0, nb = 0;
       for (Long64_t jentry=0; jentry<nentries;jentry++) 
 	{
@@ -105,8 +106,20 @@ fChain->GetEntries();
 		{
 		  for (int j=0; j<ntrig; j++)
 		    {
+		      ptCond = true;
+		      //if(j==1 && (RecoQQ4mom->Pt()< 10)) ptCond=false;
+		      //if(j==5 && (RecoQQ4mom->Pt()< 3)) ptCond=false;
+		      //if(j==6 && (RecoQQ4mom->Pt()< 3)) ptCond=false;
+		      //if(j==7 && (RecoQQ4mom->Pt()< 5)) ptCond=false;
+		      //if(j==8 && (RecoQQ4mom->Pt()< 5)) ptCond=false;
+		      //if(j==9 && (RecoQQ4mom->Pt()< 7)) ptCond=false;
+		      //if(j==10 && (RecoQQ4mom->Pt()< 7)) ptCond=false;
+		      //if(j==11 && (RecoQQ4mom->Pt()< 15)) ptCond=false;
+		      //if(j==12 && (RecoQQ4mom->Pt()< 15)) ptCond=false;
+		      //if(j==13 && (RecoQQ4mom->Pt()< 20)) ptCond=false;
+		      //if(j==14 && (RecoQQ4mom->Pt()< 20)) ptCond=false;
 
-		      if (passSoftQualityCuts2015(iQQ, 2))
+		      if (passSoftQualityCuts2015(iQQ, 2) && ptCond)
 			{
 			  pdeno[j]->Fill(RecoQQ4mom->Pt());
 			  rapdeno[j]->Fill(RecoQQ4mom->Rapidity());
@@ -140,9 +153,9 @@ fChain->GetEntries();
 	  //peff[i]->Write(Form("ptQQ_%s",trig[i].c_str()));
 	  canp[i]->cd();
 	  peff[i]->Draw("alp");
-	  tbp[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbp[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
 	  tbp[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbp[i]->SetBorderSize(0);
+	  tbp[i]->SetBorderSize(1);
 	  tbp[i]->SetFillColor(0);
 	  tbp[i]->Draw("same");
 	  canp[i]->SaveAs(Form("ptQQ_%s.png",trig[i].c_str()));
@@ -156,9 +169,9 @@ fChain->GetEntries();
 	  //rapeff[i]->Write(Form("rapQQ_%s",trig[i].c_str()));
 	  cany[i]->cd();
 	  rapeff[i]->Draw("alp");
-	  tby[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tby[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
 	  tby[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tby[i]->SetBorderSize(0);
+	  tby[i]->SetBorderSize(1);
 	  tby[i]->SetFillColor(0);
 	  tby[i]->Draw("same");
 	  cany[i]->SaveAs(Form("rapQQ_%s.png",trig[i].c_str()));
@@ -172,13 +185,14 @@ fChain->GetEntries();
 	  //masseff[i]->Write(Form("massQQ_%s",trig[i].c_str()));
 	  canm[i]->cd();
 	  masseff[i]->Draw("alp");
-	  tbm[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
+	  tbm[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
 	  tbm[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbm[i]->SetBorderSize(0);
+	  tbm[i]->SetBorderSize(1);
 	  tbm[i]->SetFillColor(0);
 	  tbm[i]->Draw("same");
 	  canm[i]->SaveAs(Form("massQQ_%s.png",trig[i].c_str()));
 	}
+      gSystem->cd("../..");
       //ptTrigEff->Close();
       //rapTrigEff->Close();
       //massTrigEff->Close();
@@ -206,6 +220,8 @@ void myTree::singleMuTrigEff()
 	}
       gSystem->mkdir("singleMuTrigEff");
       gSystem->cd("singleMuTrigEff");
+
+      //gStyle->SetLineColor(kBlue+2);
       TCanvas *canp[ntrig];
       TCanvas *cane[ntrig];
       TCanvas *canph[ntrig];
@@ -218,6 +234,9 @@ void myTree::singleMuTrigEff()
       TPaveText* tbp[ntrig];
       TPaveText* tbe[ntrig];
       TPaveText* tbph[ntrig];
+
+      Bool_t ptCond = true;
+
       for (int i=0; i<ntrig; i++)
 	{
 	  pnume[i]= new TH1F (Form("pnume%d",i), ";p_{t}(GeV/c); Events", npb-1, ptbins);
@@ -244,8 +263,20 @@ void myTree::singleMuTrigEff()
 
 	      for (int j=0; j<ntrig; j++)
 		{
+		  ptCond = true;
+		  if(j==1 && (RecoMu4mom->Pt()< 10)) ptCond=false;
+		  if(j==5 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==6 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==7 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==8 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==9 && (RecoMu4mom->Pt()< 7)) ptCond=false;
+		  if(j==10 && (RecoMu4mom->Pt()< 7)) ptCond=false;
+		  if(j==11 && (RecoMu4mom->Pt()< 15)) ptCond=false;
+		  if(j==12 && (RecoMu4mom->Pt()< 15)) ptCond=false;
+		  if(j==13 && (RecoMu4mom->Pt()< 20)) ptCond=false;
+		  if(j==14 && (RecoMu4mom->Pt()< 20)) ptCond=false;
 
-		  if (passSoftQualityCuts2015(iMu, 1))
+		  if (passSoftQualityCuts2015(iMu, 1) && ptCond)
 		    {
 		      pdeno[j]->Fill(RecoMu4mom->Pt());
 		      etadeno[j]->Fill(RecoMu4mom->Eta());
@@ -279,9 +310,13 @@ void myTree::singleMuTrigEff()
 	  //peff[i]->Write(Form("ptMu_%s",trig[i].c_str()));
 	  canp[i]->cd();
 	  peff[i]->Draw("alp");
-	  tbp[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
-	  tbp[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbp[i]->SetBorderSize(0);
+	  tbp[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
+	  tbp[i]-> AddText(Form("%s trigger efficiency as a function of pt_{#mu}",trig[i].c_str()));
+	  if (isPr)
+	    tbp[i]->AddText("Prompt MC sample");
+	  else
+	    tbp[i]->AddText("NonpromptMC sample");
+	  tbp[i]->SetBorderSize(1);
 	  tbp[i]->SetFillColor(0);
 	  tbp[i]->Draw("same");
 	  canp[i]->SaveAs(Form("ptMu_%s.png",trig[i].c_str()));
@@ -295,9 +330,14 @@ void myTree::singleMuTrigEff()
 	  //etaeff[i]->Write(Form("etaMu_%s",trig[i].c_str()));
 	  cane[i]->cd();
 	  etaeff[i]->Draw("alp");
-	  tbe[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
-	  tbe[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbe[i]->SetBorderSize(0);
+	  tbe[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
+	  tbe[i]-> AddText(Form("%s trigger efficiency as a function of #eta_{#mu}",trig[i].c_str()));
+	  if (isPr)
+	    tbe[i]->AddText("Prompt MC sample");
+	  else
+	    tbe[i]->AddText("NonpromptMC sample");
+	  tbe[i]->AddText("");
+	  tbe[i]->SetBorderSize(1);
 	  tbe[i]->SetFillColor(0);
 	  tbe[i]->Draw("same");
 	  cane[i]->SaveAs(Form("etaMu_%s.png",trig[i].c_str()));
@@ -311,13 +351,19 @@ void myTree::singleMuTrigEff()
 	  //phieff[i]->Write(Form("phiMu_%s",trig[i].c_str()));
 	  canph[i]->cd();
 	  phieff[i]->Draw("alp");
-	  tbph[i]= new TPaveText(0.15,0.6,0.5,0.7, "BRNDC");
-	  tbph[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbph[i]->SetBorderSize(0);
+	  tbph[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
+	  tbph[i]-> AddText(Form("%s trigger efficiency as a function of #phi_{#mu}",trig[i].c_str()));
+	  if (isPr)
+	    tbph[i]->AddText("Prompt MC sample");
+	  else
+	    tbph[i]->AddText("NonpromptMC sample");
+	  tbph[i]->SetBorderSize(1);
 	  tbph[i]->SetFillColor(0);
 	  tbph[i]->Draw("same");
 	  canph[i]->SaveAs(Form("phiMu_%s.png",trig[i].c_str()));
 	}
+
+      gSystem->cd("../..");
       //ptTrigEff->Close();
       //etaTrigEff->Close();
       //phiTrigEff->Close();
