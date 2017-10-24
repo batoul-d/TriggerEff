@@ -17,7 +17,7 @@ using namespace  RooFit;
 //using namespace RooPlot;
 
 Int_t ntrig=28;
-double ptbins []={0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 27, 30, 35, 40, 45, 50, 55};
+double ptbins []={0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 27, 30, 35, 40, 45, 50};
 double etabins []={-2.4, -2.2, -2, -1.8, -1.6, -1.4, -1.2, -1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4};
 double phibins []={-3.2,-2.8,-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0,0.4,0.8,1.2,1.6,2.,2.4,2.8,3.2};
 
@@ -174,42 +174,36 @@ void myTree::diMuTrigEff()
 		      if(j==5 && ((RecoQQmupl4mom->Pt()< 10) || (RecoQQmumi4mom->Pt()< 10))) ptCond=false;
 		      if(j==7 && ((RecoQQmupl4mom->Pt()< 10) || (RecoQQmumi4mom->Pt()< 10))) ptCond=false;
 		      if(j==9 && ((RecoQQmupl4mom->Pt()< 10) || (RecoQQmumi4mom->Pt()< 10))) ptCond=false;
-		      if(j==10 && ((RecoQQmupl4mom->Pt()< 3) || (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
-		      if(j==11 && ((RecoQQmupl4mom->Pt()< 5) || (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
-		      if(j==12 && ((RecoQQmupl4mom->Pt()< 7) || (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
-		      if(j==13 && ((RecoQQmupl4mom->Pt()< 12) || (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
-		      if(j==14 && ((RecoQQmupl4mom->Pt()< 16) || (RecoQQmumi4mom->Pt()< 16))) ptCond=false;
-		      if(j==15 && ((RecoQQmupl4mom->Pt()< 3) || (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
-		      if(j==16 && ((RecoQQmupl4mom->Pt()< 5) || (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
-		      if(j==17 && ((RecoQQmupl4mom->Pt()< 7) || (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
-		      if(j==18 && ((RecoQQmupl4mom->Pt()< 12) || (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
-		      if(j==19 && ((RecoQQmupl4mom->Pt()< 15) || (RecoQQmumi4mom->Pt()< 15))) ptCond=false;
-		      if(j==20 && ((RecoQQmupl4mom->Pt()< 20) || (RecoQQmumi4mom->Pt()< 20))) ptCond=false;
-		      if(j==21 && ((RecoQQmupl4mom->Pt()< 3) || (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
-		      if(j==22 && ((RecoQQmupl4mom->Pt()< 5) || (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
-		      if(j==23 && ((RecoQQmupl4mom->Pt()< 7) || (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
-		      if(j==24 && ((RecoQQmupl4mom->Pt()< 12) || (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
-		      if(j==25 && ((RecoQQmupl4mom->Pt()< 15) || (RecoQQmumi4mom->Pt()< 15))) ptCond=false;
-		      if(j==26 && ((RecoQQmupl4mom->Pt()< 20) || (RecoQQmumi4mom->Pt()< 20))) ptCond=false;
-		      if(j==27 && ((RecoQQmupl4mom->Pt()< 3) || (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
+		      if(j==10 && ((RecoQQmupl4mom->Pt()< 3) && (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
+		      if(j==11 && ((RecoQQmupl4mom->Pt()< 5) && (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
+		      if(j==12 && ((RecoQQmupl4mom->Pt()< 7) && (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
+		      if(j==13 && ((RecoQQmupl4mom->Pt()< 12) && (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
+		      if(j==14 && ((RecoQQmupl4mom->Pt()< 16) && (RecoQQmumi4mom->Pt()< 16))) ptCond=false;
+		      if(j==15 && ((RecoQQmupl4mom->Pt()< 3) && (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
+		      if(j==16 && ((RecoQQmupl4mom->Pt()< 5) && (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
+		      if(j==17 && ((RecoQQmupl4mom->Pt()< 7) && (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
+		      if(j==18 && ((RecoQQmupl4mom->Pt()< 12) && (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
+		      if(j==19 && ((RecoQQmupl4mom->Pt()< 15) && (RecoQQmumi4mom->Pt()< 15))) ptCond=false;
+		      if(j==20 && ((RecoQQmupl4mom->Pt()< 20) && (RecoQQmumi4mom->Pt()< 20))) ptCond=false;
+		      if(j==21 && ((RecoQQmupl4mom->Pt()< 3) && (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
+		      if(j==22 && ((RecoQQmupl4mom->Pt()< 5) && (RecoQQmumi4mom->Pt()< 5))) ptCond=false;
+		      if(j==23 && ((RecoQQmupl4mom->Pt()< 7) && (RecoQQmumi4mom->Pt()< 7))) ptCond=false;
+		      if(j==24 && ((RecoQQmupl4mom->Pt()< 12) && (RecoQQmumi4mom->Pt()< 12))) ptCond=false;
+		      if(j==25 && ((RecoQQmupl4mom->Pt()< 15) && (RecoQQmumi4mom->Pt()< 15))) ptCond=false;
+		      if(j==26 && ((RecoQQmupl4mom->Pt()< 20) && (RecoQQmumi4mom->Pt()< 20))) ptCond=false;
+		      if(j==27 && ((RecoQQmupl4mom->Pt()< 3) && (RecoQQmumi4mom->Pt()< 3))) ptCond=false;
 		      
 
-		      if (qualityCond)
+		      if (qualityCond && ptCond)
 			{
 			  pdeno[j]->Fill(RecoQQ4mom->Pt());
-			  if (ptCond)
-			    {
 			      rapdeno[j]->Fill(RecoQQ4mom->Rapidity());
 			      massdeno[j]->Fill(RecoQQ4mom->M());
-			    }
 			  if(isTriggerMatch(iQQ, j, 2))
 			    {
 			      pnume[j]->Fill(RecoQQ4mom->Pt());
-			      if (ptCond)
-				{
-				  rapnume[j]->Fill(RecoQQ4mom->Rapidity());
-				  massnume[j]->Fill(RecoQQ4mom->M());
-				}
+			      rapnume[j]->Fill(RecoQQ4mom->Rapidity());
+			      massnume[j]->Fill(RecoQQ4mom->M());
 			    }
 			}				
 
@@ -345,12 +339,12 @@ void myTree::singleMuTrigEff()
 
       for (int i=0; i<ntrig; i++)
 	{
-	  pnume[i]= new TH1F (Form("pnume%d",i), ";p_{t}^{#mu}(GeV/c); Efficiencyvents", npb-1, ptbins);
-	  pdeno[i]= new TH1F (Form("pdeno%d",i), ";p_{t}^{#mu}(GeV/c); Efficiency", npb-1, ptbins);
-	  etanume[i]= new TH1F (Form("etanume%d",i), ";#eta^{#mu}; Efficiency", netab-1, etabins);
-	  etadeno[i]= new TH1F (Form("etadeno%d",i), ";#eta^{#mu}; Efficiency", netab-1, etabins);
-	  phinume[i]= new TH1F (Form("phinume%d",i), ";#phi^{#mu}; Efficiency", nphib-1, phibins);
-	  phideno[i]= new TH1F (Form("phideno%d",i), ";#phi^{#mu}; Efficiency", nphib-1, phibins);
+	  pnume[i]= new TH1F (Form("pnume%d",i), ";p_{t}^{#mu+}(GeV/c); Efficiencyvents", npb-1, ptbins);
+	  pdeno[i]= new TH1F (Form("pdeno%d",i), ";p_{t}^{#mu+}(GeV/c); Efficiency", npb-1, ptbins);
+	  etanume[i]= new TH1F (Form("etanume%d",i), ";#eta^{#mu+}; Efficiency", netab-1, etabins);
+	  etadeno[i]= new TH1F (Form("etadeno%d",i), ";#eta^{#mu+}; Efficiency", netab-1, etabins);
+	  phinume[i]= new TH1F (Form("phinume%d",i), ";#phi^{#mu+}; Efficiency", nphib-1, phibins);
+	  phideno[i]= new TH1F (Form("phideno%d",i), ";#phi^{#mu+}; Efficiency", nphib-1, phibins);
 	  //canp[i] = new TCanvas (Form("canp%d", i), Form("canp%d", i), 1000, 750);
 	  //cane[i] = new TCanvas (Form("cane%d", i), Form("cane%d", i), 1000, 750);
 	  //canph[i] = new TCanvas (Form("canph%d", i), Form("canph%d", i), 1000, 750);
@@ -395,7 +389,7 @@ void myTree::singleMuTrigEff()
 		  if(j==26 && (RecoMu4mom->Pt()< 20)) ptCond=false;
 		  if(j==27 && (RecoMu4mom->Pt()< 3)) ptCond=false;
 
-		  if (qualityCond)
+		  if (qualityCond && Reco_mu_charge[iMu]>0)
 		    {
 		      pdeno[j]->Fill(RecoMu4mom->Pt());
 		      if (ptCond)
@@ -426,7 +420,7 @@ void myTree::singleMuTrigEff()
       TFile *phiTrigEff = new TFile("muPhiTrigEff.root", "RECREATE");
       for(int i=0; i<ntrig;i++)
 	{
-	  peff[i] = new TEfficiency(Form("peff%d",i), Form("%s; p_{t}^{#mu}(GeV/c); Efficiency",trig[i].c_str()), npb-1, ptbins);
+	  peff[i] = new TEfficiency(Form("peff%d",i), Form("%s; p_{t}^{#mu+}(GeV/c); Efficiency",trig[i].c_str()), npb-1, ptbins);
 	  if(TEfficiency::CheckConsistency(*pnume[i],*pdeno[i]))
 	    peff[i] = new TEfficiency (*pnume[i],*pdeno[i]);
 	  else 
@@ -442,7 +436,7 @@ void myTree::singleMuTrigEff()
 	  //tbp[i]->Draw("same");
 	  //canp[i]->SaveAs(Form("ptMu_%s.png",trig[i].c_str()));
 
-	  etaeff[i] = new TEfficiency(Form("etaeff%d",i), Form("%s;#eta^{#mu}; Efficiency",trig[i].c_str()), netab-1, etabins);
+	  etaeff[i] = new TEfficiency(Form("etaeff%d",i), Form("%s;#eta^{#mu+}; Efficiency",trig[i].c_str()), netab-1, etabins);
 	  if(TEfficiency::CheckConsistency(*etanume[i],*etadeno[i]))
 	    etaeff[i] = new TEfficiency (*etanume[i],*etadeno[i]);
 	  else 
@@ -459,7 +453,7 @@ void myTree::singleMuTrigEff()
 	  //tbe[i]->Draw("same");
 	  //cane[i]->SaveAs(Form("etaMu_%s.png",trig[i].c_str()));
 
-	  phieff[i] = new TEfficiency(Form("phieff%d",i), Form("%s; #phi^{#mu}; Efficiency",trig[i].c_str()), nphib-1, phibins);
+	  phieff[i] = new TEfficiency(Form("phieff%d",i), Form("%s; #phi^{#mu+}; Efficiency",trig[i].c_str()), nphib-1, phibins);
 	  if(TEfficiency::CheckConsistency(*phinume[i],*phideno[i]))
 	    phieff[i] = new TEfficiency (*phinume[i],*phideno[i]);
 	  else 
