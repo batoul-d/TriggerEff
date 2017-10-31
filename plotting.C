@@ -1,5 +1,5 @@
 #define _USE_MATH_DEFINES
-#include "myTree.h"
+//#include "myTree.h"
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
@@ -15,14 +15,14 @@ using namespace std;
 
 void plotting()
 {
-  int ns=5;
+  int ns=3;
 
 
-  double ptbins []={0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 27, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100};
+  double ptbins []={0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 27, 30, 35, 40, 45, 50};//, 60, 70, 80, 90, 100};
   double etabins []={-2.4, -2.2, -2, -1.8, -1.6, -1.4, -1.2, -1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4};
   double phibins []={-3.2,-2.8,-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0,0.4,0.8,1.2,1.6,2.,2.4,2.8,3.2};
-  //double massbins []={2.5, 2.6, 2.7, 2.8, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6};
-  double massbins []={88.5, 88.6, 88.7, 88.8, 88.9, 89.0, 89.1, 89.2, 89.3, 89.4, 89.5, 89.6, 89.7, 89.8, 89.9, 90.0, 90.1, 90.2, 90.3, 90.4, 90.5, 90.6, 90.7, 90.8, 90.9, 91.0, 91.1, 91.2, 91.3, 91.4, 91.5, 91.6, 91.7, 91.8, 91.9, 92.0, 92.1, 92.2, 92.3, 92.4, 92.5, 92.6, 92.7, 92.8, 92.9, 93.0, 93.1, 93.2, 93.3, 93.4, 93.5};
+  double massbins []={2.5, 2.6, 2.7, 2.8, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6};
+  //double massbins []={88.5, 88.6, 88.7, 88.8, 88.9, 89.0, 89.1, 89.2, 89.3, 89.4, 89.5, 89.6, 89.7, 89.8, 89.9, 90.0, 90.1, 90.2, 90.3, 90.4, 90.5, 90.6, 90.7, 90.8, 90.9, 91.0, 91.1, 91.2, 91.3, 91.4, 91.5, 91.6, 91.7, 91.8, 91.9, 92.0, 92.1, 92.2, 92.3, 92.4, 92.5, 92.6, 92.7, 92.8, 92.9, 93.0, 93.1, 93.2, 93.3, 93.4, 93.5};
 
   Int_t npb = sizeof(ptbins)/sizeof(double);
   Int_t netab = sizeof(etabins)/sizeof(double);
@@ -32,8 +32,14 @@ void plotting()
   float massmin = massbins[0];
   float massmax = massbins[nmassb-1];
 
+  float ptmin = ptbins[0];
+  float ptmax = ptbins[npb-1]; 
+
+  float x1 = 0.45; float y1 = 0.15;
+  float x2 = 0.15; float y2 = 0.9;
+
   string sampleName [] = {"JPsiGun", "MuGun", "NonPrJPsi", "PrJPsi", "Z"};
-  cout <<sampleName[ns-1];
+  //cout <<sampleName[ns-1];
   TFile *f1 = TFile::Open(Form("%sTrigEff/singleMuTrigEff/muPtTrigEff.root", sampleName[ns-1].c_str()));
   TFile *f2 = TFile::Open(Form("%sTrigEff/singleMuTrigEff/muEtaTrigEff.root", sampleName[ns-1].c_str()));
   TFile *f3 = TFile::Open(Form("%sTrigEff/singleMuTrigEff/muPhiTrigEff.root", sampleName[ns-1].c_str()));
@@ -46,7 +52,7 @@ void plotting()
       f5 = TFile::Open(Form("%sTrigEff/diMuTrigEff/diMuRapTrigEff.root", sampleName[ns-1].c_str()));
       f6 = TFile::Open(Form("%sTrigEff/diMuTrigEff/diMuMassTrigEff.root", sampleName[ns-1].c_str()));
       }
- 
+  gSystem->cd("plots_2510_secondsetofMCsamples");
   TH1F *h01 = new TH1F ("h01",";p_{t}^{#mu+}(GeV/c);Efficiency", npb-1, ptbins);
   TH1F *h02 = new TH1F ("h02",";#eta^{#mu+};Efficiency", netab-1, etabins);
   TH1F *h03 = new TH1F ("h03",";#phi^{#mu+};Efficiency", nphib-1, phibins);
@@ -59,56 +65,71 @@ void plotting()
   h04->GetYaxis()->SetLimits(0, 2);
   h05->GetYaxis()->SetLimits(0, 2);
   //h06->GetYaxis()->SetLimits(0,1.5);
-  TEfficiency *h1L3Mu3 = (TEfficiency*) f1->Get("ptMu_21_HLT_HIL3Mu3_v1");
-  TEfficiency *h1L3Mu5 = (TEfficiency*) f1->Get("ptMu_22_HLT_HIL3Mu5_v1");
-  TEfficiency *h1L3Mu7 = (TEfficiency*) f1->Get("ptMu_23_HLT_HIL3Mu7_v1");
-  TEfficiency *h1L3Mu12 = (TEfficiency*) f1->Get("ptMu_24_HLT_HIL3Mu12_v1");
-  TEfficiency *h1L3Mu15 = (TEfficiency*) f1->Get("ptMu_25_HLT_HIL3Mu15_v1");
-  TEfficiency *h1L3Mu20 = (TEfficiency*) f1->Get("ptMu_26_HLT_HIL3Mu20_v1");
+  TEfficiency *h1L3Mu3 = (TEfficiency*) f1->Get("HLT_HIL3Mu3_v1_pt");
+  TEfficiency *h1L3Mu5 = (TEfficiency*) f1->Get("HLT_HIL3Mu5_v1_pt");
+  TEfficiency *h1L3Mu7 = (TEfficiency*) f1->Get("HLT_HIL3Mu7_v1_pt");
+  TEfficiency *h1L3Mu12 = (TEfficiency*) f1->Get("HLT_HIL3Mu12_v1_pt");
+  TEfficiency *h1L3Mu15 = (TEfficiency*) f1->Get("HLT_HIL3Mu15_v1_pt");
+  TEfficiency *h1L3Mu20 = (TEfficiency*) f1->Get("HLT_HIL3Mu20_v1_pt");
 
-  TEfficiency *h2L3Mu3 = (TEfficiency*) f2->Get("etaMu_21_HLT_HIL3Mu3_v1");
-  TEfficiency *h2L3Mu5 = (TEfficiency*) f2->Get("etaMu_22_HLT_HIL3Mu5_v1");
-  TEfficiency *h2L3Mu7 = (TEfficiency*) f2->Get("etaMu_23_HLT_HIL3Mu7_v1");
-  TEfficiency *h2L3Mu12 = (TEfficiency*) f2->Get("etaMu_24_HLT_HIL3Mu12_v1");
-  TEfficiency *h2L3Mu15 = (TEfficiency*) f2->Get("etaMu_25_HLT_HIL3Mu15_v1");
-  TEfficiency *h2L3Mu20 = (TEfficiency*) f2->Get("etaMu_26_HLT_HIL3Mu20_v1");
+  TEfficiency *h2L3Mu3 = (TEfficiency*) f2->Get("HLT_HIL3Mu3_v1_eta");
+  TEfficiency *h2L3Mu5 = (TEfficiency*) f2->Get("HLT_HIL3Mu5_v1_eta");
+  TEfficiency *h2L3Mu7 = (TEfficiency*) f2->Get("HLT_HIL3Mu7_v1_eta");
+  TEfficiency *h2L3Mu12 = (TEfficiency*) f2->Get("HLT_HIL3Mu12_v1_eta");
+  TEfficiency *h2L3Mu15 = (TEfficiency*) f2->Get("HLT_HIL3Mu15_v1_eta");
+  TEfficiency *h2L3Mu20 = (TEfficiency*) f2->Get("HLT_HIL3Mu20_v1_eta");
 
-  TEfficiency *h3L3Mu3 = (TEfficiency*) f3->Get("phiMu__21_HLT_HIL3Mu3_v1");
-  TEfficiency *h3L3Mu5 = (TEfficiency*) f3->Get("phiMu__22_HLT_HIL3Mu5_v1");
-  TEfficiency *h3L3Mu7 = (TEfficiency*) f3->Get("phiMu__23_HLT_HIL3Mu7_v1");
-  TEfficiency *h3L3Mu12 = (TEfficiency*) f3->Get("phiMu__24_HLT_HIL3Mu12_v1");
-  TEfficiency *h3L3Mu15 = (TEfficiency*) f3->Get("phiMu__25_HLT_HIL3Mu15_v1");
-  TEfficiency *h3L3Mu20 = (TEfficiency*) f3->Get("phiMu__26_HLT_HIL3Mu20_v1");
+  TEfficiency *h3L3Mu3 = (TEfficiency*) f3->Get("HLT_HIL3Mu3_v1_phi");
+  TEfficiency *h3L3Mu5 = (TEfficiency*) f3->Get("HLT_HIL3Mu5_v1_phi");
+  TEfficiency *h3L3Mu7 = (TEfficiency*) f3->Get("HLT_HIL3Mu7_v1_phi");
+  TEfficiency *h3L3Mu12 = (TEfficiency*) f3->Get("HLT_HIL3Mu12_v1_phi");
+  TEfficiency *h3L3Mu15 = (TEfficiency*) f3->Get("HLT_HIL3Mu15_v1_phi");
+  TEfficiency *h3L3Mu20 = (TEfficiency*) f3->Get("HLT_HIL3Mu20_v1_phi");
 
-  TEfficiency *h1L1Mu3 = (TEfficiency*) f1->Get("ptMu_10_HLT_HIL1Mu3_v1");
-  TEfficiency *h1L1Mu5 = (TEfficiency*) f1->Get("ptMu_11_HLT_HIL1Mu5_v1");
-  TEfficiency *h1L1Mu7 = (TEfficiency*) f1->Get("ptMu_12_HLT_HIL1Mu7_v1");
-  TEfficiency *h1L1Mu12 = (TEfficiency*) f1->Get("ptMu_13_HLT_HIL1Mu12_v1");
-  TEfficiency *h1L1Mu16 = (TEfficiency*) f1->Get("ptMu_14_HLT_HIL1Mu16_v1");
+  TEfficiency *h1L1Mu3 = (TEfficiency*) f1->Get("HLT_HIL1Mu3_v1_pt");
+  TEfficiency *h1L1Mu5 = (TEfficiency*) f1->Get("HLT_HIL1Mu5_v1_pt");
+  TEfficiency *h1L1Mu7 = (TEfficiency*) f1->Get("HLT_HIL1Mu7_v1_pt");
+  TEfficiency *h1L1Mu12 = (TEfficiency*) f1->Get("HLT_HIL1Mu12_v1_pt");
+  TEfficiency *h1L1Mu16 = (TEfficiency*) f1->Get("HLT_HIL1Mu16_v1_pt");
 
-  TEfficiency *h2L1Mu3 = (TEfficiency*) f2->Get("etaMu_10_HLT_HIL1Mu3_v1");
-  TEfficiency *h2L1Mu5 = (TEfficiency*) f2->Get("etaMu_11_HLT_HIL1Mu5_v1");
-  TEfficiency *h2L1Mu7 = (TEfficiency*) f2->Get("etaMu_12_HLT_HIL1Mu7_v1");
-  TEfficiency *h2L1Mu12 = (TEfficiency*) f2->Get("etaMu_13_HLT_HIL1Mu12_v1");
-  TEfficiency *h2L1Mu16 = (TEfficiency*) f2->Get("etaMu_14_HLT_HIL1Mu16_v1");
+  TEfficiency *h2L1Mu3 = (TEfficiency*) f2->Get("HLT_HIL1Mu3_v1_eta");
+  TEfficiency *h2L1Mu5 = (TEfficiency*) f2->Get("HLT_HIL1Mu5_v1_eta");
+  TEfficiency *h2L1Mu7 = (TEfficiency*) f2->Get("HLT_HIL1Mu7_v1_eta");
+  TEfficiency *h2L1Mu12 = (TEfficiency*) f2->Get("HLT_HIL1Mu12_v1_eta");
+  TEfficiency *h2L1Mu16 = (TEfficiency*) f2->Get("HLT_HIL1Mu16_v1_eta");
 
-  TEfficiency *h3L1Mu3 = (TEfficiency*) f3->Get("phiMu__10_HLT_HIL1Mu3_v1");
-  TEfficiency *h3L1Mu5 = (TEfficiency*) f3->Get("phiMu__11_HLT_HIL1Mu5_v1");
-  TEfficiency *h3L1Mu7 = (TEfficiency*) f3->Get("phiMu__12_HLT_HIL1Mu7_v1");
-  TEfficiency *h3L1Mu12 = (TEfficiency*) f3->Get("phiMu__13_HLT_HIL1Mu12_v1");
-  TEfficiency *h3L1Mu16 = (TEfficiency*) f3->Get("phiMu__14_HLT_HIL1Mu16_v1");
+  TEfficiency *h3L1Mu3 = (TEfficiency*) f3->Get("HLT_HIL1Mu3_v1_phi");
+  TEfficiency *h3L1Mu5 = (TEfficiency*) f3->Get("HLT_HIL1Mu5_v1_phi");
+  TEfficiency *h3L1Mu7 = (TEfficiency*) f3->Get("HLT_HIL1Mu7_v1_phi");
+  TEfficiency *h3L1Mu12 = (TEfficiency*) f3->Get("HLT_HIL1Mu12_v1_phi");
+  TEfficiency *h3L1Mu16 = (TEfficiency*) f3->Get("HLT_HIL1Mu16_v1_phi");
 
-  TEfficiency *h1L2Mu3 = (TEfficiency*) f1->Get("ptMu_15_HLT_HIL2Mu3_v1");
-  TEfficiency *h1L2Mu5 = (TEfficiency*) f1->Get("ptMu_16_HLT_HIL2Mu5_v1");
-  TEfficiency *h1L2Mu12 = (TEfficiency*) f1->Get("ptMu_18_HLT_HIL2Mu12_v1");
+  TEfficiency *h1L2Mu3 = (TEfficiency*) f1->Get("HLT_HIL2Mu3_v1_pt");
+  TEfficiency *h1L2Mu5 = (TEfficiency*) f1->Get("HLT_HIL2Mu5_v1_pt");
+  TEfficiency *h1L2Mu12 = (TEfficiency*) f1->Get("HLT_HIL2Mu12_v1_pt");
 
-  TEfficiency *h2L2Mu3 = (TEfficiency*) f2->Get("etaMu_15_HLT_HIL2Mu3_v1");
-  TEfficiency *h2L2Mu5 = (TEfficiency*) f2->Get("etaMu_16_HLT_HIL2Mu5_v1");
-  TEfficiency *h2L2Mu12 = (TEfficiency*) f2->Get("etaMu_18_HLT_HIL2Mu12_v1");
+  TEfficiency *h2L2Mu3 = (TEfficiency*) f2->Get("HLT_HIL2Mu3_v1_eta");
+  TEfficiency *h2L2Mu5 = (TEfficiency*) f2->Get("HLT_HIL2Mu5_v1_eta");
+  TEfficiency *h2L2Mu12 = (TEfficiency*) f2->Get("HLT_HIL2Mu12_v1_eta");
 
-  TEfficiency *h3L2Mu3 = (TEfficiency*) f3->Get("phiMu__15_HLT_HIL2Mu3_v1");
-  TEfficiency *h3L2Mu5 = (TEfficiency*) f3->Get("phiMu__16_HLT_HIL2Mu5_v1");
-  TEfficiency *h3L2Mu12 = (TEfficiency*) f3->Get("phiMu__18_HLT_HIL2Mu12_v1");
+  TEfficiency *h3L2Mu3 = (TEfficiency*) f3->Get("HLT_HIL2Mu3_v1_phi");
+  TEfficiency *h3L2Mu5 = (TEfficiency*) f3->Get("HLT_HIL2Mu5_v1_phi");
+  TEfficiency *h3L2Mu12 = (TEfficiency*) f3->Get("HLT_HIL2Mu12_v1_phi");
+
+  TEfficiency *h1L2Mu3NH10 = (TEfficiency*) f1->Get("HLT_HIL2Mu3_NHitQ10_v1_pt");
+  TEfficiency *h1L2Mu5NH10 = (TEfficiency*) f1->Get("HLT_HIL2Mu5_NHitQ10_v1_pt");
+  TEfficiency *h1L3Mu3NH10 = (TEfficiency*) f1->Get("HLT_HIL3Mu3_NHitQ10_v1_pt");
+  TEfficiency *h1L3Mu5NH10 = (TEfficiency*) f1->Get("HLT_HIL3Mu5_NHitQ10_v1_pt");
+
+  TEfficiency *h2L2Mu3NH10 = (TEfficiency*) f2->Get("HLT_HIL2Mu3_NHitQ10_v1_eta");
+  TEfficiency *h2L2Mu5NH10 = (TEfficiency*) f2->Get("HLT_HIL2Mu5_NHitQ10_v1_eta");
+  TEfficiency *h2L3Mu3NH10 = (TEfficiency*) f2->Get("HLT_HIL3Mu3_NHitQ10_v1_eta");
+  TEfficiency *h2L3Mu5NH10 = (TEfficiency*) f2->Get("HLT_HIL3Mu5_NHitQ10_v1_eta");
+
+  TEfficiency *h3L2Mu3NH10 = (TEfficiency*) f3->Get("HLT_HIL2Mu3_NHitQ10_v1_phi");
+  TEfficiency *h3L2Mu5NH10 = (TEfficiency*) f3->Get("HLT_HIL2Mu5_NHitQ10_v1_phi");
+  TEfficiency *h3L3Mu3NH10 = (TEfficiency*) f3->Get("HLT_HIL3Mu3_NHitQ10_v1_phi");
+  TEfficiency *h3L3Mu5NH10 = (TEfficiency*) f3->Get("HLT_HIL3Mu5_NHitQ10_v1_phi");
 
   gStyle->SetOptStat(0);
   TCanvas *c1 = new TCanvas ("c1", "", 1000, 800);
@@ -188,7 +209,7 @@ void plotting()
   h3L1Mu16->SetMarkerStyle(33);
 
 
-  TLegend* l = new TLegend (0.8,0.2,1,0.4);
+  TLegend* l = new TLegend (x1, y1, x1+0.2, y1+0.2);
   l->AddEntry(h1L3Mu3, "HLT_HIL3Mu3", "lep");
   l->AddEntry(h1L3Mu5, "HLT_HIL3Mu5", "lep");
   l->AddEntry(h1L3Mu7, "HLT_HIL3Mu7", "lep");
@@ -197,7 +218,7 @@ void plotting()
   l->AddEntry(h1L3Mu20, "HLT_HIL3Mu20", "lep");
   l->SetBorderSize(0);
 
-  TLegend* l1 = new TLegend (0.8,0.2,1,0.4);
+  TLegend* l1 = new TLegend (x1, y1, x1+0.2, y1+0.2);
   l1->AddEntry(h1L1Mu3, "HLT_HIL1Mu3", "lep");
   l1->AddEntry(h1L1Mu5, "HLT_HIL1Mu5", "lep");
   l1->AddEntry(h1L1Mu7, "HLT_HIL1Mu7", "lep");
@@ -233,7 +254,7 @@ void plotting()
   lptx20->SetLineColor(7);
   lptx20->SetLineStyle(2);
 
-  TLine * lpty1 = new TLine (0,1,100,1);
+  TLine * lpty1 = new TLine (ptmin,1,ptmax,1);
   lpty1->SetLineColor(kRed);
   lpty1->SetLineStyle(2);
   lpty1->SetLineWidth(2);
@@ -346,7 +367,7 @@ void plotting()
   h3L2Mu12->SetMarkerStyle(33);
   h3L3Mu12->SetMarkerColor(kGreen);
 
-  TLegend* l2 = new TLegend (0.8,0.2,1,0.4);
+  TLegend* l2 = new TLegend (x1, y1, x1+0.2, y1+0.2);
   l2->AddEntry(h1L1Mu12, "HLT_HIL1Mu12", "lep");
   l2->AddEntry(h1L2Mu12, "HLT_HIL2Mu12", "lep");
   l2->AddEntry(h1L3Mu12, "HLT_HIL3Mu12", "lep");
@@ -394,7 +415,7 @@ void plotting()
   h3L2Mu3->SetMarkerStyle(33);
   h3L3Mu3->SetMarkerColor(kGreen);
 
-  TLegend* l3 = new TLegend (0.8,0.2, 1,0.4);
+  TLegend* l3 = new TLegend (x1, y1, x1+0.2, y1+0.2);
   l3->AddEntry(h1L1Mu3, "HLT_HIL1Mu3", "lep");
   l3->AddEntry(h1L2Mu3, "HLT_HIL2Mu3", "lep");
   l3->AddEntry(h1L3Mu3, "HLT_HIL3Mu3", "lep");
@@ -442,7 +463,7 @@ void plotting()
   h3L2Mu5->SetMarkerStyle(33);
   h3L3Mu5->SetMarkerColor(kGreen);
 
-  TLegend* l4 = new TLegend (0.8,0.2,1,0.4);
+  TLegend* l4 = new TLegend (x1, y1, x1+0.2, y1+0.2);
   l4->AddEntry(h1L1Mu5, "HLT_HIL1Mu5", "lep");
   l4->AddEntry(h1L2Mu5, "HLT_HIL2Mu5", "lep");
   l4->AddEntry(h1L3Mu5, "HLT_HIL3Mu5", "lep");
@@ -473,42 +494,213 @@ void plotting()
   l4->Draw("same");
   c1->SaveAs(Form("%s_Mu5_L1L2L3_phi.png", sampleName[ns-1].c_str()));
 
+  ////////////////L2Mu3NHitQ10///////////
+  h1L2Mu3->SetMarkerColor(kRed);
+  h1L2Mu3->SetMarkerStyle(33);
+  h1L2Mu3NH10->SetMarkerColor(kBlue);
+  h1L2Mu3NH10->SetMarkerStyle(33);
+
+  h2L2Mu3->SetMarkerColor(kRed);
+  h2L2Mu3->SetMarkerStyle(33);
+  h2L2Mu3NH10->SetMarkerColor(kBlue);
+  h2L2Mu3NH10->SetMarkerStyle(33);
+
+  h3L2Mu3->SetMarkerColor(kRed);
+  h3L2Mu3->SetMarkerStyle(33);
+  h3L2Mu3NH10->SetMarkerColor(kBlue);
+  h3L2Mu3NH10->SetMarkerStyle(33);
+
+  TLegend* l10 = new TLegend (x1, y1, x1+0.2, y1+0.2);
+  l10->AddEntry(h1L2Mu3, "HLT_HIL2Mu3", "lep");
+  l10->AddEntry(h1L2Mu3NH10, "HLT_HIL2Mu3_NHitQ10", "lep");
+  l10->SetBorderSize(0);
+
+  h01->Draw();
+  lpty1->Draw("same");
+  lptx3->Draw("same");
+  h1L2Mu3->Draw("same");
+  h1L2Mu3NH10->Draw("same");
+  l10->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu3_nhit10_pt.png", sampleName[ns-1].c_str()));
+
+  h02->Draw();
+  lpty2->Draw("same");
+  h2L2Mu3->Draw("same");
+  h2L2Mu3NH10->Draw("same");
+  l10->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu3_nhit10_eta.png", sampleName[ns-1].c_str()));
+
+  h03->Draw();
+  lpty3->Draw("same");
+  h3L2Mu3->Draw("same");
+  h3L2Mu3NH10->Draw("same");
+  l10->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu3_nhit10_phi.png", sampleName[ns-1].c_str()));
+
+  /////////////// L2Mu5NHitQ10//////////
+  h1L2Mu5->SetMarkerColor(kRed);
+  h1L2Mu5->SetMarkerStyle(33);
+  h1L2Mu5NH10->SetMarkerColor(kBlue);
+  h1L2Mu5NH10->SetMarkerStyle(33);
+
+  h2L2Mu5->SetMarkerColor(kRed);
+  h2L2Mu5->SetMarkerStyle(33);
+  h2L2Mu5NH10->SetMarkerColor(kBlue);
+  h2L2Mu5NH10->SetMarkerStyle(33);
+
+  h3L2Mu5->SetMarkerColor(kRed);
+  h3L2Mu5->SetMarkerStyle(33);
+  h3L2Mu5NH10->SetMarkerColor(kBlue);
+  h3L2Mu5NH10->SetMarkerStyle(33);
+
+  TLegend* l11 = new TLegend (x1, y1, x1+0.2, y1+0.2);
+  l11->AddEntry(h1L2Mu5, "HLT_HIL2Mu5", "lep");
+  l11->AddEntry(h1L2Mu5NH10, "HLT_HIL2Mu5_NHitQ10", "lep");
+  l11->SetBorderSize(0);
+
+  h01->Draw();
+  lpty1->Draw("same");
+  lptx5->Draw("same");
+  h1L2Mu5->Draw("same");
+  h1L2Mu5NH10->Draw("same");
+  l11->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu5_nhit10_pt.png", sampleName[ns-1].c_str()));
+
+  h02->Draw();
+  lpty2->Draw("same");
+  h2L2Mu5->Draw("same");
+  h2L2Mu5NH10->Draw("same");
+  l11->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu5_nhit10_eta.png", sampleName[ns-1].c_str()));
+
+  h03->Draw();
+  lpty3->Draw("same");
+  h3L2Mu5->Draw("same");
+  h3L2Mu5NH10->Draw("same");
+  l11->Draw("same");
+  c1->SaveAs(Form("%s_L2Mu5_nhit10_phi.png", sampleName[ns-1].c_str()));
+
+  ////////////////L3Mu3NHitQ10///////////
+  h1L3Mu3->SetMarkerColor(kRed);
+  h1L3Mu3->SetMarkerStyle(33);
+  h1L3Mu3NH10->SetMarkerColor(kBlue);
+  h1L3Mu3NH10->SetMarkerStyle(33);
+
+  h2L3Mu3->SetMarkerColor(kRed);
+  h2L3Mu3->SetMarkerStyle(33);
+  h2L3Mu3NH10->SetMarkerColor(kBlue);
+  h2L3Mu3NH10->SetMarkerStyle(33);
+
+  h3L3Mu3->SetMarkerColor(kRed);
+  h3L3Mu3->SetMarkerStyle(33);
+  h3L3Mu3NH10->SetMarkerColor(kBlue);
+  h3L3Mu3NH10->SetMarkerStyle(33);
+
+  TLegend* l12 = new TLegend (x1, y1, x1+0.2, y1+0.2);
+  l12->AddEntry(h1L3Mu3, "HLT_HIL3Mu3", "lep");
+  l12->AddEntry(h1L3Mu3NH10, "HLT_HIL3Mu3_NHitQ10", "lep");
+  l12->SetBorderSize(0);
+
+  h01->Draw();
+  lpty1->Draw("same");
+  lptx3->Draw("same");
+  h1L3Mu3->Draw("same");
+  h1L3Mu3NH10->Draw("same");
+  l12->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu3_nhit10_pt.png", sampleName[ns-1].c_str()));
+
+  h02->Draw();
+  lpty2->Draw("same");
+  h2L3Mu3->Draw("same");
+  h2L3Mu3NH10->Draw("same");
+  l12->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu3_nhit10_eta.png", sampleName[ns-1].c_str()));
+
+  h03->Draw();
+  lpty3->Draw("same");
+  h3L3Mu3->Draw("same");
+  h3L3Mu3NH10->Draw("same");
+  l12->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu3_nhit10_phi.png", sampleName[ns-1].c_str()));
+
+  /////////////// L3Mu5NHitQ10//////////
+  h1L3Mu5->SetMarkerColor(kRed);
+  h1L3Mu5->SetMarkerStyle(33);
+  h1L3Mu5NH10->SetMarkerColor(kBlue);
+  h1L3Mu5NH10->SetMarkerStyle(33);
+
+  h2L3Mu5->SetMarkerColor(kRed);
+  h2L3Mu5->SetMarkerStyle(33);
+  h2L3Mu5NH10->SetMarkerColor(kBlue);
+  h2L3Mu5NH10->SetMarkerStyle(33);
+
+  h3L3Mu5->SetMarkerColor(kRed);
+  h3L3Mu5->SetMarkerStyle(33);
+  h3L3Mu5NH10->SetMarkerColor(kBlue);
+  h3L3Mu5NH10->SetMarkerStyle(33);
+
+  TLegend* l13 = new TLegend (x1, y1, x1+0.2, y1+0.2);
+  l13->AddEntry(h1L3Mu5, "HLT_HIL3Mu5", "lep");
+  l13->AddEntry(h1L3Mu5NH10, "HLT_HIL3Mu5_NHitQ10", "lep");
+  l13->SetBorderSize(0);
+
+  h01->Draw();
+  lpty1->Draw("same");
+  lptx5->Draw("same");
+  h1L3Mu5->Draw("same");
+  h1L3Mu5NH10->Draw("same");
+  l13->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu5_nhit10_pt.png", sampleName[ns-1].c_str()));
+
+  h02->Draw();
+  lpty2->Draw("same");
+  h2L3Mu5->Draw("same");
+  h2L3Mu5NH10->Draw("same");
+  l13->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu5_nhit10_eta.png", sampleName[ns-1].c_str()));
+
+  h03->Draw();
+  lpty3->Draw("same");
+  h3L3Mu5->Draw("same");
+  h3L3Mu5NH10->Draw("same");
+  l13->Draw("same");
+  c1->SaveAs(Form("%s_L3Mu5_nhit10_phi.png", sampleName[ns-1].c_str()));
 
   /////////////// diMu ////////////
   if (ns!=2)
     {
-      TEfficiency *h100 = (TEfficiency*) f4->Get("ptQQ_0_HLT_HIL1DoubleMuOpen_v1");
-      TEfficiency *h101 = (TEfficiency*) f4->Get("ptQQ_1_HLT_HIL1DoubleMuOpen_OS_v1");
-      TEfficiency *h102 = (TEfficiency*) f4->Get("ptQQ_2_HLT_HIL1DoubleMuOpen_SS_v1");
-      TEfficiency *h103 = (TEfficiency*) f4->Get("ptQQ_3_HLT_HIL1DoubleMu0_v1");
-      TEfficiency *h104 = (TEfficiency*) f4->Get("ptQQ_4_HLT_HIL1DoubleMu0_HighQ_v1");
-      TEfficiency *h105 = (TEfficiency*) f4->Get("ptQQ_5_HLT_HIL1DoubleMu10_v1");
-      TEfficiency *h106 = (TEfficiency*) f4->Get("ptQQ_6_HLT_HIL2DoubleMu0_v1");
-      TEfficiency *h107 = (TEfficiency*) f4->Get("ptQQ_7_HLT_HIL2DoubleMu10_v1");
-      TEfficiency *h108 = (TEfficiency*) f4->Get("ptQQ_8_HLT_HIL3DoubleMu0_v1");
-      TEfficiency *h109 = (TEfficiency*) f4->Get("ptQQ_9_HLT_HIL3DoubleMu10_v1");
+      TEfficiency *h100 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMuOpen_v1_pt");
+      TEfficiency *h101 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMuOpen_OS_v1_pt");
+      TEfficiency *h102 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMuOpen_SS_v1_pt");
+      TEfficiency *h103 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMu0_v1_pt");
+      TEfficiency *h104 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMu0_HighQ_v1_pt");
+      TEfficiency *h105 = (TEfficiency*) f4->Get("HLT_HIL1DoubleMu10_v1_pt");
+      TEfficiency *h106 = (TEfficiency*) f4->Get("HLT_HIL2DoubleMu0_v1_pt");
+      TEfficiency *h107 = (TEfficiency*) f4->Get("HLT_HIL2DoubleMu10_v1_pt");
+      TEfficiency *h108 = (TEfficiency*) f4->Get("HLT_HIL3DoubleMu0_v1_pt");
+      TEfficiency *h109 = (TEfficiency*) f4->Get("HLT_HIL3DoubleMu10_v1_pt");
 
-      TEfficiency *h110 = (TEfficiency*) f5->Get("rapQQ_0_HLT_HIL1DoubleMuOpen_v1");
-      TEfficiency *h111 = (TEfficiency*) f5->Get("rapQQ_1_HLT_HIL1DoubleMuOpen_OS_v1");
-      TEfficiency *h112 = (TEfficiency*) f5->Get("rapQQ_2_HLT_HIL1DoubleMuOpen_SS_v1");
-      TEfficiency *h113 = (TEfficiency*) f5->Get("rapQQ_3_HLT_HIL1DoubleMu0_v1");
-      TEfficiency *h114 = (TEfficiency*) f5->Get("rapQQ_4_HLT_HIL1DoubleMu0_HighQ_v1");
-      TEfficiency *h115 = (TEfficiency*) f5->Get("rapQQ_5_HLT_HIL1DoubleMu10_v1");
-      TEfficiency *h116 = (TEfficiency*) f5->Get("rapQQ_6_HLT_HIL2DoubleMu0_v1");
-      TEfficiency *h117 = (TEfficiency*) f5->Get("rapQQ_7_HLT_HIL2DoubleMu10_v1");
-      TEfficiency *h118 = (TEfficiency*) f5->Get("rapQQ_8_HLT_HIL3DoubleMu0_v1");
-      TEfficiency *h119 = (TEfficiency*) f5->Get("rapQQ_9_HLT_HIL3DoubleMu10_v1");
+      TEfficiency *h110 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMuOpen_v1_rap");
+      TEfficiency *h111 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMuOpen_OS_v1_rap");
+      TEfficiency *h112 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMuOpen_SS_v1_rap");
+      TEfficiency *h113 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMu0_v1_rap");
+      TEfficiency *h114 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMu0_HighQ_v1_rap");
+      TEfficiency *h115 = (TEfficiency*) f5->Get("HLT_HIL1DoubleMu10_v1_rap");
+      TEfficiency *h116 = (TEfficiency*) f5->Get("HLT_HIL2DoubleMu0_v1_rap");
+      TEfficiency *h117 = (TEfficiency*) f5->Get("HLT_HIL2DoubleMu10_v1_rap");
+      TEfficiency *h118 = (TEfficiency*) f5->Get("HLT_HIL3DoubleMu0_v1_rap");
+      TEfficiency *h119 = (TEfficiency*) f5->Get("HLT_HIL3DoubleMu10_v1_rap");
 
-      TEfficiency *h120 = (TEfficiency*) f6->Get("massQQ_0_HLT_HIL1DoubleMuOpen_v1");
-      TEfficiency *h121 = (TEfficiency*) f6->Get("massQQ_1_HLT_HIL1DoubleMuOpen_OS_v1");
-      TEfficiency *h122 = (TEfficiency*) f6->Get("massQQ_2_HLT_HIL1DoubleMuOpen_SS_v1");
-      TEfficiency *h123 = (TEfficiency*) f6->Get("massQQ_3_HLT_HIL1DoubleMu0_v1");
-      TEfficiency *h124 = (TEfficiency*) f6->Get("massQQ_4_HLT_HIL1DoubleMu0_HighQ_v1");
-      TEfficiency *h125 = (TEfficiency*) f6->Get("massQQ_5_HLT_HIL1DoubleMu10_v1");
-      TEfficiency *h126 = (TEfficiency*) f6->Get("massQQ_6_HLT_HIL2DoubleMu0_v1");
-      TEfficiency *h127 = (TEfficiency*) f6->Get("massQQ_7_HLT_HIL2DoubleMu10_v1");
-      TEfficiency *h128 = (TEfficiency*) f6->Get("massQQ_8_HLT_HIL3DoubleMu0_v1");
-      TEfficiency *h129 = (TEfficiency*) f6->Get("massQQ_9_HLT_HIL3DoubleMu10_v1");
+      TEfficiency *h120 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMuOpen_v1_mass");
+      TEfficiency *h121 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMuOpen_OS_v1_mass");
+      TEfficiency *h122 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMuOpen_SS_v1_mass");
+      TEfficiency *h123 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMu0_v1_mass");
+      TEfficiency *h124 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMu0_HighQ_v1_mass");
+      TEfficiency *h125 = (TEfficiency*) f6->Get("HLT_HIL1DoubleMu10_v1_mass");
+      TEfficiency *h126 = (TEfficiency*) f6->Get("HLT_HIL2DoubleMu0_v1_mass");
+      TEfficiency *h127 = (TEfficiency*) f6->Get("HLT_HIL2DoubleMu10_v1_mass");
+      TEfficiency *h128 = (TEfficiency*) f6->Get("HLT_HIL3DoubleMu0_v1_mass");
+      TEfficiency *h129 = (TEfficiency*) f6->Get("HLT_HIL3DoubleMu10_v1_mass");
 
 
       h100->SetMarkerColor(kRed);
@@ -532,11 +724,11 @@ void plotting()
       h124->SetMarkerColor(kGreen);
       h124->SetMarkerStyle(33);
 
-      TLegend* l5 = new TLegend (0.8,0.4,1,0.6);
+      TLegend* l5 = new TLegend (x2, y2, x2+0.3, y2+0.1);
       l5->AddEntry(h100, "HLT_HIL1DoubleMuOpen", "lep");
       l5->AddEntry(h103, "HLT_HIL1DoubleMu0", "lep");
       l5->AddEntry(h104, "HLT_HIL1DoubleMu0_HighQ", "lep");
-      l5->SetBorderSize(0);
+      l5->SetBorderSize(1);
 
       h01->Draw();
       lpty1->Draw("same");
@@ -576,10 +768,10 @@ void plotting()
       h122->SetMarkerColor(kBlue);
       h122->SetMarkerStyle(33);
 
-      TLegend* l6 = new TLegend (0.8,0.4,1,0.6);
+      TLegend* l6 = new TLegend (x2, y2, x2+0.3, y2+0.1);
       l6->AddEntry(h101, "HLT_HIL1DoubleMuOpen_OS", "lep");
       l6->AddEntry(h102, "HLT_HIL1DoubleMuOpen_SS", "lep");
-      l6->SetBorderSize(0);
+      l6->SetBorderSize(1);
 
       h01->Draw();
       lpty1->Draw("same");
@@ -624,11 +816,11 @@ void plotting()
       h128->SetMarkerColor(kGreen);
       h128->SetMarkerStyle(33);
 
-      TLegend* l7 = new TLegend (0.8,0.4,1,0.6);
+      TLegend* l7 = new TLegend (x2, y2, x2+0.3, y2+0.1);
       l7->AddEntry(h103, "HLT_HIL1DoubleMu0", "lep");
       l7->AddEntry(h106, "HLT_HIL2DoubleMu0", "lep");
       l7->AddEntry(h108, "HLT_HIL3DoubleMu0", "lep");
-      l7->SetBorderSize(0);
+      l7->SetBorderSize(1);
 
       h01->Draw();
       lpty1->Draw("same");
@@ -675,11 +867,11 @@ void plotting()
 	  h129->SetMarkerColor(kGreen);
 	  h129->SetMarkerStyle(33);
 
-	  TLegend* l8 = new TLegend (0.8,0.4,1,0.6);
+	  TLegend* l8 = new TLegend (x2, y2, x2+0.3, y2+0.1);
 	  l8->AddEntry(h105, "HLT_HIL1DoubleMu10", "lep");
 	  l8->AddEntry(h107, "HLT_HIL2DoubleMu10", "lep");
 	  l8->AddEntry(h109, "HLT_HIL3DoubleMu10", "lep");
-	  l8->SetBorderSize(0);
+	  l8->SetBorderSize(1);
 
 	  h01->Draw();
 	  lpty1->Draw("same");
@@ -704,4 +896,5 @@ void plotting()
 	  c1->SaveAs(Form("%s_doubleMu10_L1L2L3_mass.png", sampleName[ns-1].c_str()));
 	}
     }
+  gSystem->cd("..");
 }

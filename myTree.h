@@ -379,8 +379,10 @@ public :
    Int_t           HLT_HIL1Mu16_v1_Prescl;
    Int_t           HLT_HIL2Mu3_v1;
    Int_t           HLT_HIL2Mu3_v1_Prescl;
+   Int_t           HLT_HIL2Mu3_NHitQ10_v1;//
    Int_t           HLT_HIL2Mu5_v1;
    Int_t           HLT_HIL2Mu5_v1_Prescl;
+   Int_t           HLT_HIL2Mu5_NHitQ10_v1;
    Int_t           HLT_HIL2Mu7_v1;
    Int_t           HLT_HIL2Mu7_v1_Prescl;
    Int_t           HLT_HIL2Mu12_v1;
@@ -391,8 +393,10 @@ public :
    Int_t           HLT_HIL2Mu20_v1_Prescl;
    Int_t           HLT_HIL3Mu3_v1;
    Int_t           HLT_HIL3Mu3_v1_Prescl;
+   Int_t           HLT_HIL3Mu3_NHitQ10_v1;
    Int_t           HLT_HIL3Mu5_v1;
    Int_t           HLT_HIL3Mu5_v1_Prescl;
+   Int_t           HLT_HIL3Mu5_NHitQ10_v1;//
    Int_t           HLT_HIL3Mu7_v1;
    Int_t           HLT_HIL3Mu7_v1_Prescl;
    Int_t           HLT_HIL3Mu12_v1;
@@ -401,52 +405,56 @@ public :
    Int_t           HLT_HIL3Mu15_v1_Prescl;
    Int_t           HLT_HIL3Mu20_v1;
    Int_t           HLT_HIL3Mu20_v1_Prescl;
+   Int_t           HLT_HIL3Mu3_Track1_Jpsi_v1;//
+   Int_t           HLT_HIL3Mu5_Track1_Jpsi_v1;//
+   Int_t           HLT_HIL3Mu3_Track1_v1;//
+   Int_t           HLT_HIL3Mu5_Track1_v1;//
    Int_t           HLTriggerFinalPath;
    Int_t           HLTriggerFinalPath_Prescl;
-   Int_t           L1_DoubleMu0_Final;
-   Int_t           L1_DoubleMu0_Prescl;
-   Int_t           L1_DoubleMu0_BptxAND_Final;
-   Int_t           L1_DoubleMu0_BptxAND_Prescl;
-   Int_t           L1_DoubleMu0_MassGT1_BptxAND_Final;
-   Int_t           L1_DoubleMu0_MassGT1_BptxAND_Prescl;
-   Int_t           L1_DoubleMu10_BptxAND_Final;
-   Int_t           L1_DoubleMu10_BptxAND_Prescl;
-   Int_t           L1_DoubleMuOpen_Final;
-   Int_t           L1_DoubleMuOpen_Prescl;
-   Int_t           L1_DoubleMuOpen_BptxAND_Final;
-   Int_t           L1_DoubleMuOpen_BptxAND_Prescl;
-   Int_t           L1_DoubleMuOpen_MassGT1_BptxAND_Final;
-   Int_t           L1_DoubleMuOpen_MassGT1_BptxAND_Prescl;
-   Int_t           L1_DoubleMuOpen_OS_BptxAND_Final;
-   Int_t           L1_DoubleMuOpen_OS_BptxAND_Prescl;
-   Int_t           L1_DoubleMuOpen_SS_BptxAND_Final;
-   Int_t           L1_DoubleMuOpen_SS_BptxAND_Prescl;
-   Int_t           L1_SingleMu0_Final;
-   Int_t           L1_SingleMu0_Prescl;
-   Int_t           L1_SingleMu0_BptxAND_Final;
-   Int_t           L1_SingleMu0_BptxAND_Prescl;
-   Int_t           L1_SingleMu10_BptxAND_Final;
-   Int_t           L1_SingleMu10_BptxAND_Prescl;
-   Int_t           L1_SingleMu12_BptxAND_Final;
-   Int_t           L1_SingleMu12_BptxAND_Prescl;
-   Int_t           L1_SingleMu16_BptxAND_Final;
-   Int_t           L1_SingleMu16_BptxAND_Prescl;
-   Int_t           L1_SingleMu3_Final;
-   Int_t           L1_SingleMu3_Prescl;
-   Int_t           L1_SingleMu3_BptxAND_Final;
-   Int_t           L1_SingleMu3_BptxAND_Prescl;
-   Int_t           L1_SingleMu5_Final;
-   Int_t           L1_SingleMu5_Prescl;
-   Int_t           L1_SingleMu5_BptxAND_Final;
-   Int_t           L1_SingleMu5_BptxAND_Prescl;
-   Int_t           L1_SingleMu7_Final;
-   Int_t           L1_SingleMu7_Prescl;
-   Int_t           L1_SingleMu7_BptxAND_Final;
-   Int_t           L1_SingleMu7_BptxAND_Prescl;
-   Int_t           L1_SingleMuOpen_Final;
-   Int_t           L1_SingleMuOpen_Prescl;
-   Int_t           L1_SingleMuOpen_BptxAND_Final;
-   Int_t           L1_SingleMuOpen_BptxAND_Prescl;
+   //Int_t           L1_DoubleMu0_Final;
+   //Int_t           L1_DoubleMu0_Prescl;
+   //Int_t           L1_DoubleMu0_BptxAND_Final;
+   //Int_t           L1_DoubleMu0_BptxAND_Prescl;
+   //Int_t           L1_DoubleMu0_MassGT1_BptxAND_Final;
+   //Int_t           L1_DoubleMu0_MassGT1_BptxAND_Prescl;
+   //Int_t           L1_DoubleMu10_BptxAND_Final;
+   //Int_t           L1_DoubleMu10_BptxAND_Prescl;
+   //Int_t           L1_DoubleMuOpen_Final;
+   //Int_t           L1_DoubleMuOpen_Prescl;
+   //Int_t           L1_DoubleMuOpen_BptxAND_Final;
+   //Int_t           L1_DoubleMuOpen_BptxAND_Prescl;
+   //Int_t           L1_DoubleMuOpen_MassGT1_BptxAND_Final;
+   //Int_t           L1_DoubleMuOpen_MassGT1_BptxAND_Prescl;
+   //Int_t           L1_DoubleMuOpen_OS_BptxAND_Final;
+   //Int_t           L1_DoubleMuOpen_OS_BptxAND_Prescl;
+   //Int_t           L1_DoubleMuOpen_SS_BptxAND_Final;
+   //Int_t           L1_DoubleMuOpen_SS_BptxAND_Prescl;
+   //Int_t           L1_SingleMu0_Final;
+   //Int_t           L1_SingleMu0_Prescl;
+   //Int_t           L1_SingleMu0_BptxAND_Final;
+   //Int_t           L1_SingleMu0_BptxAND_Prescl;
+   //Int_t           L1_SingleMu10_BptxAND_Final;
+   //Int_t           L1_SingleMu10_BptxAND_Prescl;
+   //Int_t           L1_SingleMu12_BptxAND_Final;
+   //Int_t           L1_SingleMu12_BptxAND_Prescl;
+   //Int_t           L1_SingleMu16_BptxAND_Final;
+   //Int_t           L1_SingleMu16_BptxAND_Prescl;
+   //Int_t           L1_SingleMu3_Final;
+   //Int_t           L1_SingleMu3_Prescl;
+   //Int_t           L1_SingleMu3_BptxAND_Final;
+   //Int_t           L1_SingleMu3_BptxAND_Prescl;
+   //Int_t           L1_SingleMu5_Final;
+   //Int_t           L1_SingleMu5_Prescl;
+   //Int_t           L1_SingleMu5_BptxAND_Final;
+   //Int_t           L1_SingleMu5_BptxAND_Prescl;
+   //Int_t           L1_SingleMu7_Final;
+   //Int_t           L1_SingleMu7_Prescl;
+   //Int_t           L1_SingleMu7_BptxAND_Final;
+   //Int_t           L1_SingleMu7_BptxAND_Prescl;
+   //Int_t           L1_SingleMuOpen_Final;
+   //Int_t           L1_SingleMuOpen_Prescl;
+   //Int_t           L1_SingleMuOpen_BptxAND_Final;
+   //Int_t           L1_SingleMuOpen_BptxAND_Prescl;
 
    // List of branches
    TBranch        *b_NL1Stage2EGamma;   //!
@@ -542,8 +550,10 @@ public :
    TBranch        *b_HLT_HIL1Mu16_v1_Prescl;   //!
    TBranch        *b_HLT_HIL2Mu3_v1;   //!
    TBranch        *b_HLT_HIL2Mu3_v1_Prescl;   //!
+   TBranch        *b_HLT_HIL2Mu3_NHitQ10_v1;    ///////!
    TBranch        *b_HLT_HIL2Mu5_v1;   //!
    TBranch        *b_HLT_HIL2Mu5_v1_Prescl;   //!
+   TBranch        *b_HLT_HIL2Mu5_NHitQ10_v1;    /////////!
    TBranch        *b_HLT_HIL2Mu7_v1;   //!
    TBranch        *b_HLT_HIL2Mu7_v1_Prescl;   //!
    TBranch        *b_HLT_HIL2Mu12_v1;   //!
@@ -554,8 +564,10 @@ public :
    TBranch        *b_HLT_HIL2Mu20_v1_Prescl;   //!
    TBranch        *b_HLT_HIL3Mu3_v1;   //!
    TBranch        *b_HLT_HIL3Mu3_v1_Prescl;   //!
+   TBranch        *b_HLT_HIL3Mu3_NHitQ10_v1;    /////////!
    TBranch        *b_HLT_HIL3Mu5_v1;   //!
    TBranch        *b_HLT_HIL3Mu5_v1_Prescl;   //!
+   TBranch        *b_HLT_HIL3Mu5_NHitQ10_v1;    /////////!
    TBranch        *b_HLT_HIL3Mu7_v1;   //!
    TBranch        *b_HLT_HIL3Mu7_v1_Prescl;   //!
    TBranch        *b_HLT_HIL3Mu12_v1;   //!
@@ -564,52 +576,56 @@ public :
    TBranch        *b_HLT_HIL3Mu15_v1_Prescl;   //!
    TBranch        *b_HLT_HIL3Mu20_v1;   //!
    TBranch        *b_HLT_HIL3Mu20_v1_Prescl;   //!
+   TBranch        *b_HLT_HIL3Mu3_Track1_Jpsi_v1;  ////////////!
+   TBranch        *b_HLT_HIL3Mu5_Track1_Jpsi_v1;  ////////////!
+   TBranch        *b_HLT_HIL3Mu3_Track1_v1;  ////////////!
+   TBranch        *b_HLT_HIL3Mu5_Track1_v1;  ////////////!
    TBranch        *b_HLTriggerFinalPath;   //!
    TBranch        *b_HLTriggerFinalPath_Prescl;   //!
-   TBranch        *b_L1_DoubleMu0_Final;   //!
-   TBranch        *b_L1_DoubleMu0_Prescl;   //!
-   TBranch        *b_L1_DoubleMu0_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMu0_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMu0_MassGT1_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMu0_MassGT1_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMu10_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMu10_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMuOpen_Final;   //!
-   TBranch        *b_L1_DoubleMuOpen_Prescl;   //!
-   TBranch        *b_L1_DoubleMuOpen_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMuOpen_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMuOpen_MassGT1_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMuOpen_MassGT1_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMuOpen_OS_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMuOpen_OS_BptxAND_Prescl;   //!
-   TBranch        *b_L1_DoubleMuOpen_SS_BptxAND_Final;   //!
-   TBranch        *b_L1_DoubleMuOpen_SS_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu0_Final;   //!
-   TBranch        *b_L1_SingleMu0_Prescl;   //!
-   TBranch        *b_L1_SingleMu0_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu0_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu10_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu10_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu12_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu12_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu16_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu16_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu3_Final;   //!
-   TBranch        *b_L1_SingleMu3_Prescl;   //!
-   TBranch        *b_L1_SingleMu3_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu3_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu5_Final;   //!
-   TBranch        *b_L1_SingleMu5_Prescl;   //!
-   TBranch        *b_L1_SingleMu5_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu5_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMu7_Final;   //!
-   TBranch        *b_L1_SingleMu7_Prescl;   //!
-   TBranch        *b_L1_SingleMu7_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMu7_BptxAND_Prescl;   //!
-   TBranch        *b_L1_SingleMuOpen_Final;   //!
-   TBranch        *b_L1_SingleMuOpen_Prescl;   //!
-   TBranch        *b_L1_SingleMuOpen_BptxAND_Final;   //!
-   TBranch        *b_L1_SingleMuOpen_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMu0_Final;   //!
+   //TBranch        *b_L1_DoubleMu0_Prescl;   //!
+   //TBranch        *b_L1_DoubleMu0_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMu0_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMu0_MassGT1_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMu0_MassGT1_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMu10_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMu10_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMuOpen_Final;   //!
+   //TBranch        *b_L1_DoubleMuOpen_Prescl;   //!
+   //TBranch        *b_L1_DoubleMuOpen_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMuOpen_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMuOpen_MassGT1_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMuOpen_MassGT1_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMuOpen_OS_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMuOpen_OS_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_DoubleMuOpen_SS_BptxAND_Final;   //!
+   //TBranch        *b_L1_DoubleMuOpen_SS_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu0_Final;   //!
+   //TBranch        *b_L1_SingleMu0_Prescl;   //!
+   //TBranch        *b_L1_SingleMu0_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu0_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu10_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu10_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu12_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu12_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu16_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu16_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu3_Final;   //!
+   //TBranch        *b_L1_SingleMu3_Prescl;   //!
+   //TBranch        *b_L1_SingleMu3_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu3_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu5_Final;   //!
+   //TBranch        *b_L1_SingleMu5_Prescl;   //!
+   //TBranch        *b_L1_SingleMu5_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu5_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMu7_Final;   //!
+   //TBranch        *b_L1_SingleMu7_Prescl;   //!
+   //TBranch        *b_L1_SingleMu7_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMu7_BptxAND_Prescl;   //!
+   //TBranch        *b_L1_SingleMuOpen_Final;   //!
+   //TBranch        *b_L1_SingleMuOpen_Prescl;   //!
+   //TBranch        *b_L1_SingleMuOpen_BptxAND_Final;   //!
+   //TBranch        *b_L1_SingleMuOpen_BptxAND_Prescl;   //!
 
 
 
@@ -646,26 +662,26 @@ myTree::myTree(int nTr = 1) : fChain(0)
     nTr=1;
   nTree = nTr;
   if (nTree == 1)
-    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_JPsiGun_pp_2017pp502_Onia_20171017_merge.root");
+    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_JPsiGun_pp_2017pp502_Onia_20171025_merge.root");
   else if (nTree ==2)
     f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_MuGun_pp_2017pp502_Onia_20171017_merge.root");
   else if (nTree ==3)
-    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_NonPrJPsi_pp_2017pp502_Onia_20171017_merge.root");
+    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_NonPrJPsi_pp_2017pp502_Onia_20171025_merge.root");
   else if (nTree ==4)
-    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_PrJPsi_pp_2017pp502_Onia_20171017_merge.root");
+    f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_PrJPsi_pp_2017pp502_Onia_20171025_merge.root");
   else if (nTree ==5)
     f = (TFile*)gROOT->GetListOfFiles()->FindObject("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_Zm10m10_pp_2017pp502_Onia_20171017_merge.root");
 
   if (!f || !f->IsOpen()) 
     {
       if (nTree == 1)
-	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_JPsiGun_pp_2017pp502_Onia_20171017_merge.root");
+	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_JPsiGun_pp_2017pp502_Onia_20171025_merge.root");
       else if (nTree ==2)
 	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_MuGun_pp_2017pp502_Onia_20171017_merge.root");
       else if (nTree ==3)
-	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_NonPrJPsi_pp_2017pp502_Onia_20171017_merge.root");
+	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_NonPrJPsi_pp_2017pp502_Onia_20171025_merge.root");
       else if (nTree ==4)
-	f = new TFile("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_PrJPsi_pp_2017pp502_Onia_20171017_merge.root");
+	f = new TFile("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_PrJPsi_pp_2017pp502_Onia_20171025_merge.root");
       else if (nTree ==5)
 	f = new TFile ("/data_CMS/cms/diab/TrigEffMcSamples/Pythia8_Zm10m10_pp_2017pp502_Onia_20171017_merge.root");
     }
@@ -971,8 +987,10 @@ void myTree::Init(TTree *tree)
    fChain->SetBranchAddress("HLT_HIL1Mu16_v1_Prescl", &HLT_HIL1Mu16_v1_Prescl, &b_HLT_HIL1Mu16_v1_Prescl);
    fChain->SetBranchAddress("HLT_HIL2Mu3_v1", &HLT_HIL2Mu3_v1, &b_HLT_HIL2Mu3_v1);
    fChain->SetBranchAddress("HLT_HIL2Mu3_v1_Prescl", &HLT_HIL2Mu3_v1_Prescl, &b_HLT_HIL2Mu3_v1_Prescl);
+   fChain->SetBranchAddress("HLT_HIL2Mu3_NHitQ10_v1", &HLT_HIL2Mu3_NHitQ10_v1, &b_HLT_HIL2Mu3_NHitQ10_v1);
    fChain->SetBranchAddress("HLT_HIL2Mu5_v1", &HLT_HIL2Mu5_v1, &b_HLT_HIL2Mu5_v1);
    fChain->SetBranchAddress("HLT_HIL2Mu5_v1_Prescl", &HLT_HIL2Mu5_v1_Prescl, &b_HLT_HIL2Mu5_v1_Prescl);
+   fChain->SetBranchAddress("HLT_HIL2Mu5_NHitQ10_v1", &HLT_HIL2Mu5_NHitQ10_v1, &b_HLT_HIL2Mu5_NHitQ10_v1);
    fChain->SetBranchAddress("HLT_HIL2Mu7_v1", &HLT_HIL2Mu7_v1, &b_HLT_HIL2Mu7_v1);
    fChain->SetBranchAddress("HLT_HIL2Mu7_v1_Prescl", &HLT_HIL2Mu7_v1_Prescl, &b_HLT_HIL2Mu7_v1_Prescl);
    fChain->SetBranchAddress("HLT_HIL2Mu12_v1", &HLT_HIL2Mu12_v1, &b_HLT_HIL2Mu12_v1);
@@ -983,8 +1001,10 @@ void myTree::Init(TTree *tree)
    fChain->SetBranchAddress("HLT_HIL2Mu20_v1_Prescl", &HLT_HIL2Mu20_v1_Prescl, &b_HLT_HIL2Mu20_v1_Prescl);
    fChain->SetBranchAddress("HLT_HIL3Mu3_v1", &HLT_HIL3Mu3_v1, &b_HLT_HIL3Mu3_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu3_v1_Prescl", &HLT_HIL3Mu3_v1_Prescl, &b_HLT_HIL3Mu3_v1_Prescl);
+   fChain->SetBranchAddress("HLT_HIL3Mu3_NHitQ10_v1", &HLT_HIL3Mu3_NHitQ10_v1, &b_HLT_HIL3Mu3_NHitQ10_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu5_v1", &HLT_HIL3Mu5_v1, &b_HLT_HIL3Mu5_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu5_v1_Prescl", &HLT_HIL3Mu5_v1_Prescl, &b_HLT_HIL3Mu5_v1_Prescl);
+   fChain->SetBranchAddress("HLT_HIL3Mu5_NHitQ10_v1", &HLT_HIL3Mu5_NHitQ10_v1, &b_HLT_HIL3Mu5_NHitQ10_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu7_v1", &HLT_HIL3Mu7_v1, &b_HLT_HIL3Mu7_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu7_v1_Prescl", &HLT_HIL3Mu7_v1_Prescl, &b_HLT_HIL3Mu7_v1_Prescl);
    fChain->SetBranchAddress("HLT_HIL3Mu12_v1", &HLT_HIL3Mu12_v1, &b_HLT_HIL3Mu12_v1);
@@ -993,52 +1013,56 @@ void myTree::Init(TTree *tree)
    fChain->SetBranchAddress("HLT_HIL3Mu15_v1_Prescl", &HLT_HIL3Mu15_v1_Prescl, &b_HLT_HIL3Mu15_v1_Prescl);
    fChain->SetBranchAddress("HLT_HIL3Mu20_v1", &HLT_HIL3Mu20_v1, &b_HLT_HIL3Mu20_v1);
    fChain->SetBranchAddress("HLT_HIL3Mu20_v1_Prescl", &HLT_HIL3Mu20_v1_Prescl, &b_HLT_HIL3Mu20_v1_Prescl);
+   fChain->SetBranchAddress("HLT_HIL3Mu3_Track1_Jpsi_v1", &HLT_HIL3Mu3_Track1_Jpsi_v1, &b_HLT_HIL3Mu3_Track1_Jpsi_v1);
+   fChain->SetBranchAddress("HLT_HIL3Mu5_Track1_Jpsi_v1", &HLT_HIL3Mu5_Track1_Jpsi_v1, &b_HLT_HIL3Mu5_Track1_Jpsi_v1);
+   fChain->SetBranchAddress("HLT_HIL3Mu3_Track1_v1", &HLT_HIL3Mu3_Track1_v1, &b_HLT_HIL3Mu3_Track1_v1);
+   fChain->SetBranchAddress("HLT_HIL3Mu5_Track1_v1", &HLT_HIL3Mu5_Track1_v1, &b_HLT_HIL3Mu5_Track1_v1);
    fChain->SetBranchAddress("HLTriggerFinalPath", &HLTriggerFinalPath, &b_HLTriggerFinalPath);
    fChain->SetBranchAddress("HLTriggerFinalPath_Prescl", &HLTriggerFinalPath_Prescl, &b_HLTriggerFinalPath_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMu0_Final", &L1_DoubleMu0_Final, &b_L1_DoubleMu0_Final);
-   fChain->SetBranchAddress("L1_DoubleMu0_Prescl", &L1_DoubleMu0_Prescl, &b_L1_DoubleMu0_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMu0_BptxAND_Final", &L1_DoubleMu0_BptxAND_Final, &b_L1_DoubleMu0_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMu0_BptxAND_Prescl", &L1_DoubleMu0_BptxAND_Prescl, &b_L1_DoubleMu0_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMu0_MassGT1_BptxAND_Final", &L1_DoubleMu0_MassGT1_BptxAND_Final, &b_L1_DoubleMu0_MassGT1_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMu0_MassGT1_BptxAND_Prescl", &L1_DoubleMu0_MassGT1_BptxAND_Prescl, &b_L1_DoubleMu0_MassGT1_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMu10_BptxAND_Final", &L1_DoubleMu10_BptxAND_Final, &b_L1_DoubleMu10_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMu10_BptxAND_Prescl", &L1_DoubleMu10_BptxAND_Prescl, &b_L1_DoubleMu10_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_Final", &L1_DoubleMuOpen_Final, &b_L1_DoubleMuOpen_Final);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_Prescl", &L1_DoubleMuOpen_Prescl, &b_L1_DoubleMuOpen_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_BptxAND_Final", &L1_DoubleMuOpen_BptxAND_Final, &b_L1_DoubleMuOpen_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_BptxAND_Prescl", &L1_DoubleMuOpen_BptxAND_Prescl, &b_L1_DoubleMuOpen_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_MassGT1_BptxAND_Final", &L1_DoubleMuOpen_MassGT1_BptxAND_Final, &b_L1_DoubleMuOpen_MassGT1_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_MassGT1_BptxAND_Prescl", &L1_DoubleMuOpen_MassGT1_BptxAND_Prescl, &b_L1_DoubleMuOpen_MassGT1_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_OS_BptxAND_Final", &L1_DoubleMuOpen_OS_BptxAND_Final, &b_L1_DoubleMuOpen_OS_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_OS_BptxAND_Prescl", &L1_DoubleMuOpen_OS_BptxAND_Prescl, &b_L1_DoubleMuOpen_OS_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_SS_BptxAND_Final", &L1_DoubleMuOpen_SS_BptxAND_Final, &b_L1_DoubleMuOpen_SS_BptxAND_Final);
-   fChain->SetBranchAddress("L1_DoubleMuOpen_SS_BptxAND_Prescl", &L1_DoubleMuOpen_SS_BptxAND_Prescl, &b_L1_DoubleMuOpen_SS_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu0_Final", &L1_SingleMu0_Final, &b_L1_SingleMu0_Final);
-   fChain->SetBranchAddress("L1_SingleMu0_Prescl", &L1_SingleMu0_Prescl, &b_L1_SingleMu0_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu0_BptxAND_Final", &L1_SingleMu0_BptxAND_Final, &b_L1_SingleMu0_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu0_BptxAND_Prescl", &L1_SingleMu0_BptxAND_Prescl, &b_L1_SingleMu0_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu10_BptxAND_Final", &L1_SingleMu10_BptxAND_Final, &b_L1_SingleMu10_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu10_BptxAND_Prescl", &L1_SingleMu10_BptxAND_Prescl, &b_L1_SingleMu10_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu12_BptxAND_Final", &L1_SingleMu12_BptxAND_Final, &b_L1_SingleMu12_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu12_BptxAND_Prescl", &L1_SingleMu12_BptxAND_Prescl, &b_L1_SingleMu12_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu16_BptxAND_Final", &L1_SingleMu16_BptxAND_Final, &b_L1_SingleMu16_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu16_BptxAND_Prescl", &L1_SingleMu16_BptxAND_Prescl, &b_L1_SingleMu16_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu3_Final", &L1_SingleMu3_Final, &b_L1_SingleMu3_Final);
-   fChain->SetBranchAddress("L1_SingleMu3_Prescl", &L1_SingleMu3_Prescl, &b_L1_SingleMu3_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu3_BptxAND_Final", &L1_SingleMu3_BptxAND_Final, &b_L1_SingleMu3_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu3_BptxAND_Prescl", &L1_SingleMu3_BptxAND_Prescl, &b_L1_SingleMu3_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu5_Final", &L1_SingleMu5_Final, &b_L1_SingleMu5_Final);
-   fChain->SetBranchAddress("L1_SingleMu5_Prescl", &L1_SingleMu5_Prescl, &b_L1_SingleMu5_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu5_BptxAND_Final", &L1_SingleMu5_BptxAND_Final, &b_L1_SingleMu5_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu5_BptxAND_Prescl", &L1_SingleMu5_BptxAND_Prescl, &b_L1_SingleMu5_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu7_Final", &L1_SingleMu7_Final, &b_L1_SingleMu7_Final);
-   fChain->SetBranchAddress("L1_SingleMu7_Prescl", &L1_SingleMu7_Prescl, &b_L1_SingleMu7_Prescl);
-   fChain->SetBranchAddress("L1_SingleMu7_BptxAND_Final", &L1_SingleMu7_BptxAND_Final, &b_L1_SingleMu7_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMu7_BptxAND_Prescl", &L1_SingleMu7_BptxAND_Prescl, &b_L1_SingleMu7_BptxAND_Prescl);
-   fChain->SetBranchAddress("L1_SingleMuOpen_Final", &L1_SingleMuOpen_Final, &b_L1_SingleMuOpen_Final);
-   fChain->SetBranchAddress("L1_SingleMuOpen_Prescl", &L1_SingleMuOpen_Prescl, &b_L1_SingleMuOpen_Prescl);
-   fChain->SetBranchAddress("L1_SingleMuOpen_BptxAND_Final", &L1_SingleMuOpen_BptxAND_Final, &b_L1_SingleMuOpen_BptxAND_Final);
-   fChain->SetBranchAddress("L1_SingleMuOpen_BptxAND_Prescl", &L1_SingleMuOpen_BptxAND_Prescl, &b_L1_SingleMuOpen_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMu0_Final", &L1_DoubleMu0_Final, &b_L1_DoubleMu0_Final);
+   //fChain->SetBranchAddress("L1_DoubleMu0_Prescl", &L1_DoubleMu0_Prescl, &b_L1_DoubleMu0_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMu0_BptxAND_Final", &L1_DoubleMu0_BptxAND_Final, &b_L1_DoubleMu0_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMu0_BptxAND_Prescl", &L1_DoubleMu0_BptxAND_Prescl, &b_L1_DoubleMu0_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMu0_MassGT1_BptxAND_Final", &L1_DoubleMu0_MassGT1_BptxAND_Final, &b_L1_DoubleMu0_MassGT1_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMu0_MassGT1_BptxAND_Prescl", &L1_DoubleMu0_MassGT1_BptxAND_Prescl, &b_L1_DoubleMu0_MassGT1_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMu10_BptxAND_Final", &L1_DoubleMu10_BptxAND_Final, &b_L1_DoubleMu10_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMu10_BptxAND_Prescl", &L1_DoubleMu10_BptxAND_Prescl, &b_L1_DoubleMu10_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_Final", &L1_DoubleMuOpen_Final, &b_L1_DoubleMuOpen_Final);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_Prescl", &L1_DoubleMuOpen_Prescl, &b_L1_DoubleMuOpen_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_BptxAND_Final", &L1_DoubleMuOpen_BptxAND_Final, &b_L1_DoubleMuOpen_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_BptxAND_Prescl", &L1_DoubleMuOpen_BptxAND_Prescl, &b_L1_DoubleMuOpen_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_MassGT1_BptxAND_Final", &L1_DoubleMuOpen_MassGT1_BptxAND_Final, &b_L1_DoubleMuOpen_MassGT1_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_MassGT1_BptxAND_Prescl", &L1_DoubleMuOpen_MassGT1_BptxAND_Prescl, &b_L1_DoubleMuOpen_MassGT1_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_OS_BptxAND_Final", &L1_DoubleMuOpen_OS_BptxAND_Final, &b_L1_DoubleMuOpen_OS_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_OS_BptxAND_Prescl", &L1_DoubleMuOpen_OS_BptxAND_Prescl, &b_L1_DoubleMuOpen_OS_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_SS_BptxAND_Final", &L1_DoubleMuOpen_SS_BptxAND_Final, &b_L1_DoubleMuOpen_SS_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_DoubleMuOpen_SS_BptxAND_Prescl", &L1_DoubleMuOpen_SS_BptxAND_Prescl, &b_L1_DoubleMuOpen_SS_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu0_Final", &L1_SingleMu0_Final, &b_L1_SingleMu0_Final);
+   //fChain->SetBranchAddress("L1_SingleMu0_Prescl", &L1_SingleMu0_Prescl, &b_L1_SingleMu0_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu0_BptxAND_Final", &L1_SingleMu0_BptxAND_Final, &b_L1_SingleMu0_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu0_BptxAND_Prescl", &L1_SingleMu0_BptxAND_Prescl, &b_L1_SingleMu0_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu10_BptxAND_Final", &L1_SingleMu10_BptxAND_Final, &b_L1_SingleMu10_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu10_BptxAND_Prescl", &L1_SingleMu10_BptxAND_Prescl, &b_L1_SingleMu10_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu12_BptxAND_Final", &L1_SingleMu12_BptxAND_Final, &b_L1_SingleMu12_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu12_BptxAND_Prescl", &L1_SingleMu12_BptxAND_Prescl, &b_L1_SingleMu12_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu16_BptxAND_Final", &L1_SingleMu16_BptxAND_Final, &b_L1_SingleMu16_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu16_BptxAND_Prescl", &L1_SingleMu16_BptxAND_Prescl, &b_L1_SingleMu16_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu3_Final", &L1_SingleMu3_Final, &b_L1_SingleMu3_Final);
+   //fChain->SetBranchAddress("L1_SingleMu3_Prescl", &L1_SingleMu3_Prescl, &b_L1_SingleMu3_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu3_BptxAND_Final", &L1_SingleMu3_BptxAND_Final, &b_L1_SingleMu3_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu3_BptxAND_Prescl", &L1_SingleMu3_BptxAND_Prescl, &b_L1_SingleMu3_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu5_Final", &L1_SingleMu5_Final, &b_L1_SingleMu5_Final);
+   //fChain->SetBranchAddress("L1_SingleMu5_Prescl", &L1_SingleMu5_Prescl, &b_L1_SingleMu5_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu5_BptxAND_Final", &L1_SingleMu5_BptxAND_Final, &b_L1_SingleMu5_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu5_BptxAND_Prescl", &L1_SingleMu5_BptxAND_Prescl, &b_L1_SingleMu5_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu7_Final", &L1_SingleMu7_Final, &b_L1_SingleMu7_Final);
+   //fChain->SetBranchAddress("L1_SingleMu7_Prescl", &L1_SingleMu7_Prescl, &b_L1_SingleMu7_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMu7_BptxAND_Final", &L1_SingleMu7_BptxAND_Final, &b_L1_SingleMu7_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMu7_BptxAND_Prescl", &L1_SingleMu7_BptxAND_Prescl, &b_L1_SingleMu7_BptxAND_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMuOpen_Final", &L1_SingleMuOpen_Final, &b_L1_SingleMuOpen_Final);
+   //fChain->SetBranchAddress("L1_SingleMuOpen_Prescl", &L1_SingleMuOpen_Prescl, &b_L1_SingleMuOpen_Prescl);
+   //fChain->SetBranchAddress("L1_SingleMuOpen_BptxAND_Final", &L1_SingleMuOpen_BptxAND_Final, &b_L1_SingleMuOpen_BptxAND_Final);
+   //fChain->SetBranchAddress("L1_SingleMuOpen_BptxAND_Prescl", &L1_SingleMuOpen_BptxAND_Prescl, &b_L1_SingleMuOpen_BptxAND_Prescl);
 
    Notify();
 }

@@ -16,7 +16,8 @@ using namespace std;
 using namespace  RooFit;
 //using namespace RooPlot;
 
-Int_t ntrig=28;
+Int_t ntrig=35;
+
 double ptbins []={0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 27, 30, 35, 40, 45, 50, 60, 70, 80, 100};
 double etabins []={-2.4, -2.2, -2, -1.8, -1.6, -1.4, -1.2, -1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4};
 double phibins []={-3.2,-2.8,-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0,0.4,0.8,1.2,1.6,2.,2.4,2.8,3.2};
@@ -27,7 +28,7 @@ double massbinsz []={88.5, 88.6, 88.7, 88.8, 88.9, 89.0, 89.1, 89.2, 89.3, 89.4,
 
 string trig [] = 
   {
-    // For 2017 (Latest) 28 total
+    // For 2017 (Latest) 35 total
     //Double
     "HLT_HIL1DoubleMuOpen_v1",//0
     "HLT_HIL1DoubleMuOpen_OS_v1",//1
@@ -46,18 +47,25 @@ string trig [] =
     "HLT_HIL1Mu12_v1",//13
     "HLT_HIL1Mu16_v1",//14
     "HLT_HIL2Mu3_v1",//15
-    "HLT_HIL2Mu5_v1",//16
-    "HLT_HIL2Mu7_v1",//17
-    "HLT_HIL2Mu12_v1",//18
-    "HLT_HIL2Mu15_v1",//19
-    "HLT_HIL2Mu20_v1",//20
-    "HLT_HIL3Mu3_v1",//21
-    "HLT_HIL3Mu5_v1",//22
-    "HLT_HIL3Mu7_v1",//23
-    "HLT_HIL3Mu12_v1",//24
-    "HLT_HIL3Mu15_v1",//25
-    "HLT_HIL3Mu20_v1",//26
-    "HLT_HIL3Mu3_Track1_Jpsi_v1"//27
+    "HLT_HIL2Mu3_NHitQ10_v1",//16
+    "HLT_HIL2Mu5_v1",//17
+    "HLT_HIL2Mu5_NHitQ10_v1",//18
+    "HLT_HIL2Mu7_v1",//19
+    "HLT_HIL2Mu12_v1",//20
+    "HLT_HIL2Mu15_v1",//21
+    "HLT_HIL2Mu20_v1",//22
+    "HLT_HIL3Mu3_v1",//23
+    "HLT_HIL3Mu3_NHitQ10_v1",//24
+    "HLT_HIL3Mu5_v1",//25
+    "HLT_HIL3Mu5_NHitQ10_v1",//26
+    "HLT_HIL3Mu7_v1",//27
+    "HLT_HIL3Mu12_v1",//28
+    "HLT_HIL3Mu15_v1",//29
+    "HLT_HIL3Mu20_v1",//30
+    "HLT_HIL3Mu3_Track1_Jpsi_v1",//31
+    "HLT_HIL3Mu5_Track1_Jpsi_v1",//32
+    "HLT_HIL3Mu3_Track1_v1",//33
+    "HLT_HIL3Mu5_Track1_v1",//34
   };
 
 Int_t npb = sizeof(ptbins)/sizeof(double);
@@ -227,20 +235,11 @@ void myTree::diMuTrigEff()
 	    peff[i] = new TEfficiency (*pnume[i],*pdeno[i]);
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in fct of pt"<<i<<endl;
-	  lpty1[i] = new TLine (0, 1, 50, 1);
-	  lpty1[i]->SetLineStyle(2);
-	  lpty1[i]->SetLineColor(kRed);
 	  ptTrigEff->cd();
-	  peff[i]->Write(Form("ptQQ_%d_%s", i, trig[i].c_str()));
-	  //canp[i]->cd();
-	  //peff[i]->Draw("alp");
-	  //lpty1[i]->Draw("sames");
-	  //tbp[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
-	  //tbp[i]-> AddText(Form("%s",trig[i].c_str()));
-	  //tbp[i]->SetBorderSize(1);
-	  //tbp[i]->SetFillColor(0);
-	  //tbp[i]->Draw("same");
-	  //canp[i]->SaveAs(Form("ptQQ_%s.png",trig[i].c_str()));
+	  peff[i]->SetMarkerColor(i+1);
+	  peff[i]->SetMarkerStyle(33);
+	  peff[i]->Write(Form("%s_pt", trig[i].c_str()));
+
 
 	  rapeff[i] = new TEfficiency(Form("rapeff%d",i), ";y^{#mu#mu}; Efficiency", netab-1, etabins);
 	  if(TEfficiency::CheckConsistency(*rapnume[i],*rapdeno[i]))
@@ -248,15 +247,10 @@ void myTree::diMuTrigEff()
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in function of rapidity"<<i<<endl;
 	  rapTrigEff->cd();
-	  rapeff[i]->Write(Form("rapQQ_%d_%s", i, trig[i].c_str()));
-	  //cany[i]->cd();
-	  //rapeff[i]->Draw("alp");
-	  tby[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
-	  tby[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tby[i]->SetBorderSize(1);
-	  tby[i]->SetFillColor(0);
-	  //tby[i]->Draw("same");
-	  //cany[i]->SaveAs(Form("rapQQ_%s.png",trig[i].c_str()));
+	  rapeff[i]->SetMarkerColor(i+1);
+	  rapeff[i]->SetMarkerStyle(33);
+	  rapeff[i]->Write(Form("%s_rap", trig[i].c_str()));
+
 
 	  if (nTree ==5)
 	    masseff[i] = new TEfficiency(Form("masseff%d",i), "; mass^{#mu#mu} (GeV/c^{2}); Efficiency", nmassbz-1, massbinsz);
@@ -267,15 +261,9 @@ void myTree::diMuTrigEff()
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in function of mass"<<i<<endl;
 	  massTrigEff->cd();
-	  masseff[i]->Write(Form("massQQ_%d_%s", i, trig[i].c_str()));
-	  //canm[i]->cd();
-	  //masseff[i]->Draw("alp");
-	  tbm[i]= new TPaveText(0.15,0.9,0.5,0.95, "BRNDC");
-	  tbm[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbm[i]->SetBorderSize(1);
-	  tbm[i]->SetFillColor(0);
-	  //tbm[i]->Draw("same");
-	  //canm[i]->SaveAs(Form("massQQ_%s.png",trig[i].c_str()));
+	  masseff[i]->SetMarkerColor(i+1);
+	  masseff[i]->SetMarkerStyle(33);
+	  masseff[i]->Write(Form("%s_mass", trig[i].c_str()));
 	}
       gSystem->cd("../..");
       ptTrigEff->Close();
@@ -320,10 +308,7 @@ void myTree::singleMuTrigEff()
       gSystem->mkdir("singleMuTrigEff");
       gSystem->cd("singleMuTrigEff");
 
-      //gStyle->SetLineColor(kBlue+2);
-      //TCanvas *canp[ntrig];
-      //TCanvas *cane[ntrig];
-      //TCanvas *canph[ntrig];
+
       TH1F *pnume[ntrig];
       TH1F *pdeno[ntrig];
       TH1F *etanume[ntrig];
@@ -345,9 +330,7 @@ void myTree::singleMuTrigEff()
 	  etadeno[i]= new TH1F (Form("etadeno%d",i), ";#eta^{#mu+}; Efficiency", netab-1, etabins);
 	  phinume[i]= new TH1F (Form("phinume%d",i), ";#phi^{#mu+}; Efficiency", nphib-1, phibins);
 	  phideno[i]= new TH1F (Form("phideno%d",i), ";#phi^{#mu+}; Efficiency", nphib-1, phibins);
-	  //canp[i] = new TCanvas (Form("canp%d", i), Form("canp%d", i), 1000, 750);
-	  //cane[i] = new TCanvas (Form("cane%d", i), Form("cane%d", i), 1000, 750);
-	  //canph[i] = new TCanvas (Form("canph%d", i), Form("canph%d", i), 1000, 750);
+
 	}
 
       Long64_t nentries = fChain->GetEntries();
@@ -376,18 +359,25 @@ void myTree::singleMuTrigEff()
 		  if(j==13 && (RecoMu4mom->Pt()< 12)) ptCond=false;
 		  if(j==14 && (RecoMu4mom->Pt()< 16)) ptCond=false;
 		  if(j==15 && (RecoMu4mom->Pt()< 3)) ptCond=false;
-		  if(j==16 && (RecoMu4mom->Pt()< 5)) ptCond=false;
-		  if(j==17 && (RecoMu4mom->Pt()< 7)) ptCond=false;
-		  if(j==18 && (RecoMu4mom->Pt()< 12)) ptCond=false;
-		  if(j==19 && (RecoMu4mom->Pt()< 15)) ptCond=false;
-		  if(j==20 && (RecoMu4mom->Pt()< 20)) ptCond=false;
-		  if(j==21 && (RecoMu4mom->Pt()< 3)) ptCond=false;
-		  if(j==22 && (RecoMu4mom->Pt()< 5)) ptCond=false;
-		  if(j==23 && (RecoMu4mom->Pt()< 7)) ptCond=false;
-		  if(j==24 && (RecoMu4mom->Pt()< 12)) ptCond=false;
-		  if(j==25 && (RecoMu4mom->Pt()< 15)) ptCond=false;
-		  if(j==26 && (RecoMu4mom->Pt()< 20)) ptCond=false;
-		  if(j==27 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==16 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==17 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==18 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==19 && (RecoMu4mom->Pt()< 7)) ptCond=false;
+		  if(j==20 && (RecoMu4mom->Pt()< 12)) ptCond=false;
+		  if(j==21 && (RecoMu4mom->Pt()< 15)) ptCond=false;
+		  if(j==22 && (RecoMu4mom->Pt()< 20)) ptCond=false;
+		  if(j==23 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==24 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==25 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==26 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==27 && (RecoMu4mom->Pt()< 7)) ptCond=false;
+		  if(j==28 && (RecoMu4mom->Pt()< 12)) ptCond=false;
+		  if(j==29 && (RecoMu4mom->Pt()< 15)) ptCond=false;
+		  if(j==30 && (RecoMu4mom->Pt()< 20)) ptCond=false;
+		  if(j==31 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==32 && (RecoMu4mom->Pt()< 5)) ptCond=false;
+		  if(j==33 && (RecoMu4mom->Pt()< 3)) ptCond=false;
+		  if(j==34 && (RecoMu4mom->Pt()< 5)) ptCond=false;
 
 		  if (qualityCond && Reco_mu_charge[iMu]>0)
 		    {
@@ -426,15 +416,13 @@ void myTree::singleMuTrigEff()
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in fct of pt"<<i<<endl;
 	  ptTrigEff->cd();
-	  peff[i]->Write(Form("ptMu_%d_%s",i, trig[i].c_str()));
-	  //canp[i]->cd();
-	  //peff[i]->Draw("alp");
+	  peff[i]->SetMarkerColor(i+1);
+	  peff[i]->SetMarkerStyle(33);
+	  peff[i]->Write(Form("%s_pt", trig[i].c_str()));
 	  tbp[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
 	  tbp[i]-> AddText(Form("%s",trig[i].c_str()));
 	  tbp[i]->SetBorderSize(1);
 	  tbp[i]->SetFillColor(0);
-	  //tbp[i]->Draw("same");
-	  //canp[i]->SaveAs(Form("ptMu_%s.png",trig[i].c_str()));
 
 	  etaeff[i] = new TEfficiency(Form("etaeff%d",i), Form("%s;#eta^{#mu+}; Efficiency",trig[i].c_str()), netab-1, etabins);
 	  if(TEfficiency::CheckConsistency(*etanume[i],*etadeno[i]))
@@ -442,16 +430,9 @@ void myTree::singleMuTrigEff()
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in function of eta"<<i<<endl;
 	  etaTrigEff->cd();
-	  etaeff[i]->Write(Form("etaMu_%d_%s",i,trig[i].c_str()));
-	  //cane[i]->cd();
-	  //etaeff[i]->Draw("alp");
-	  tbe[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
-	  tbe[i]-> AddText(Form("%s",trig[i].c_str()));
-	  //tbe[i]->AddText("");
-	  tbe[i]->SetBorderSize(1);
-	  tbe[i]->SetFillColor(0);
-	  //tbe[i]->Draw("same");
-	  //cane[i]->SaveAs(Form("etaMu_%s.png",trig[i].c_str()));
+	  etaeff[i]->SetMarkerColor(i+1);
+	  etaeff[i]->SetMarkerStyle(33);
+	  etaeff[i]->Write(Form("%s_eta", trig[i].c_str()));
 
 	  phieff[i] = new TEfficiency(Form("phieff%d",i), Form("%s; #phi^{#mu+}; Efficiency",trig[i].c_str()), nphib-1, phibins);
 	  if(TEfficiency::CheckConsistency(*phinume[i],*phideno[i]))
@@ -459,15 +440,10 @@ void myTree::singleMuTrigEff()
 	  else 
 	    cout<<"inconsistent histograms for trigger efficiency in function of phi"<<i<<endl;
 	  phiTrigEff->cd();
-	  phieff[i]->Write(Form("phiMu__%d_%s",i,trig[i].c_str()));
-	  //canph[i]->cd();
-	  //phieff[i]->Draw("alp");
-	  tbph[i]= new TPaveText(0.15,0.9,0.5,0.99, "BRNDC");
-	  tbph[i]-> AddText(Form("%s",trig[i].c_str()));
-	  tbph[i]->SetBorderSize(1);
-	  tbph[i]->SetFillColor(0);
-	  //tbph[i]->Draw("same");
-	  //canph[i]->SaveAs(Form("phiMu_%s.png",trig[i].c_str()));
+	  peff[i]->SetMarkerColor(i+1);
+	  peff[i]->SetMarkerStyle(33);
+	  phieff[i]->Write(Form("%s_phi", trig[i].c_str()));
+
 	}
 
 
